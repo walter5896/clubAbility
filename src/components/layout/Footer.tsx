@@ -122,7 +122,7 @@ export default function Footer() {
           <Link to="/sponsors" className="site-footer-nav-link">
             Sponsors
           </Link>
-          <Link to="/contact" className="site-footer-nav-link">
+          <Link to="/get-started" className="site-footer-nav-link">
             Contact Us
           </Link>
           <Link to="/get-involved" className="site-footer-nav-link">
