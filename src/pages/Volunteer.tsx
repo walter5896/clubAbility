@@ -142,7 +142,7 @@ export default function Volunteer() {
           }
 
           .vol-benefit-card.teal {
-            background: #78a5b6;
+            background: #00384b;
             color: white;
           }
 
