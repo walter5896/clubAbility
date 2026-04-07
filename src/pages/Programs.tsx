@@ -292,6 +292,9 @@ export default function Programs() {
               transform 0.2s ease,
               box-shadow 0.2s ease,
               filter 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
           }
 
           .program-card:hover {
@@ -308,6 +311,9 @@ export default function Programs() {
 
           .program-card-body {
             padding: 14px 16px 14px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
           }
 
           .tag-row {
@@ -357,7 +363,10 @@ export default function Programs() {
             font-weight: 400;
             color: #4a7a8a;
             text-align: left;
-            min-height: 86px;
+          }
+
+          .program-card-footer {
+            margin-top: auto;
           }
 
           .program-card-divider {
@@ -492,10 +501,6 @@ export default function Programs() {
               line-height: 1.1;
             }
 
-            .program-card-copy {
-              min-height: unset;
-            }
-
             .interest-cta {
               padding: 24px 18px 26px;
             }
@@ -623,17 +628,19 @@ export default function Programs() {
 
                         <p className="program-card-copy">{program.description}</p>
 
-                        <div className="program-card-divider" />
+                        <div className="program-card-footer">
+                          <div className="program-card-divider" />
 
-                        <p className="program-start">{program.startDate}</p>
+                          <p className="program-start">{program.startDate}</p>
 
-                        <button
-                          className="learn-more-btn"
-                          onClick={() => navigate("/program-detail")}
-                          type="button"
-                        >
-                          Learn More
-                        </button>
+                          <button
+                            className="learn-more-btn"
+                            onClick={() => navigate("/program-detail")}
+                            type="button"
+                          >
+                            Learn More
+                          </button>
+                        </div>
                       </div>
                     </div>
                   ))}
