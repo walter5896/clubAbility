@@ -4,6 +4,7 @@ import RootLayout from "./components/layout/RootLayout";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Awards from "./pages/Awards";
+import ContactUs from "./pages/ContactUs";
 import GetInvolved from "./pages/GetInvolved";
 import GetStarted from "./pages/GetStarted";
 import Donate from "./pages/Donate";
@@ -24,6 +25,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="awards" element={<Awards />} />
+        <Route path="contact" element={<ContactUs />} />
         <Route path="get-involved" element={<GetInvolved />} />
         <Route path="get-started" element={<GetStarted />} />
         <Route path="donate" element={<Donate />} />
