@@ -1,5 +1,5 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
-import { ChevronDown, ChevronRight, Phone, MapPin, Mail } from "lucide-react";
+import { ChevronDown, ChevronLeft, Phone, MapPin, Mail } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import robot1 from "../assets/clubability/volunteer/robot1.svg";
@@ -58,30 +58,42 @@ export default function Volunteer() {
           .vol-banner-row {
             display: flex;
             align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
+            gap: 16px;
           }
 
           .vol-banner-title {
             margin: 0;
             color: white;
             font-family: Poppins, sans-serif;
-            font-size: 57px;
-            line-height: 57px;
-            font-weight: 700;
+            font-size: 35px;
+            line-height: 35px;
+            font-weight: 600;
             white-space: nowrap;
           }
 
           .vol-breadcrumb {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             color: white;
             font-family: Roboto, sans-serif;
             font-size: 16px;
             line-height: 1;
             font-weight: 400;
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            white-space: nowrap;
             opacity: 0.96;
+          }
+
+          .vol-banner-line {
+            height: 4px;
+            background: #e8206a;
+            flex: 1;
+            border-radius: 999px;
+            margin-top: 4px;
           }
 
           .vol-content {
@@ -451,9 +463,13 @@ export default function Volunteer() {
               padding: 0 16px;
             }
 
+            .vol-banner-row {
+              flex-wrap: wrap;
+            }
+
             .vol-banner-title {
-              font-size: 42px;
-              line-height: 1.05;
+              font-size: 28px;
+              line-height: 1.1;
             }
 
             .vol-content {
@@ -520,11 +536,18 @@ export default function Volunteer() {
         <div className="vol-shell">
           <div className="vol-inner">
             <div className="vol-banner-row">
-              <h1 className="vol-banner-title">Get Involved</h1>
-              <div className="vol-breadcrumb">
-                <ChevronRight size={18} />
-                <span>Volunteer</span>
-              </div>
+              <h2 className="vol-banner-title">Volunteer</h2>
+
+              <button
+                className="vol-breadcrumb"
+                onClick={() => navigate("/get-involved")}
+                type="button"
+              >
+                <ChevronLeft size={18} />
+                <span>Get Involved</span>
+              </button>
+
+              <div className="vol-banner-line" />
             </div>
           </div>
         </div>
