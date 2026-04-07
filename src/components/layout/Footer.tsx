@@ -139,7 +139,7 @@ export default function Footer() {
           .site-footer {
             background: #062430;
             padding: 20px 0 0;
-            margin-top: 80px;
+            margin-top: 0;
           }
 
           .site-footer-shell {
