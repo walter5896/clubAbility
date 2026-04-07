@@ -65,6 +65,12 @@ export default function GetStarted() {
             padding: 28px 0 30px;
           }
 
+          .gs-banner-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+          }
+
           .gs-banner h1 {
             margin: 0;
             color: white;
@@ -72,6 +78,15 @@ export default function GetStarted() {
             font-size: 57px;
             line-height: 57px;
             font-weight: 700;
+            white-space: nowrap;
+          }
+
+          .gs-banner-line {
+            height: 4px;
+            background: #e8206a;
+            flex: 1;
+            border-radius: 999px;
+            margin-top: 8px;
           }
 
           .gs-intro {
@@ -369,9 +384,22 @@ export default function GetStarted() {
               padding: 0 16px;
             }
 
+            .gs-banner-row {
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 12px;
+            }
+
             .gs-banner h1 {
               font-size: 42px;
               line-height: 1.05;
+              white-space: normal;
+            }
+
+            .gs-banner-line {
+              width: 100%;
+              flex: none;
+              margin-top: 0;
             }
 
             .gs-intro-copy {
@@ -412,7 +440,10 @@ export default function GetStarted() {
       <section className="gs-banner">
         <div className="gs-shell">
           <div className="gs-inner">
-            <h1>Get Started</h1>
+            <div className="gs-banner-row">
+              <h1>Class Interest Form</h1>
+              <div className="gs-banner-line" />
+            </div>
           </div>
         </div>
       </section>
@@ -432,7 +463,7 @@ export default function GetStarted() {
       <section className="gs-content">
         <div className="gs-shell">
           <div className="gs-inner">
-            <h2 className="gs-form-title">Student Interest Form</h2>
+            <h2 className="gs-form-title">Class Interest Form</h2>
 
             <div className="gs-stack">
               <div className="gs-panel">
