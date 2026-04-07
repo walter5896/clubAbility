@@ -68,40 +68,40 @@ export default function LoginOverlay({
           }
 
           .login-overlay-title {
-            margin: 0 0 12px 0;
+            margin: 0 0 16px 0;
             font-family: Poppins, sans-serif;
-            font-size: 24px;
-            line-height: 1;
-            font-weight: 700;
+            font-size: 35px;
+            line-height: 35px;
+            font-weight: 600;
             color: #062430;
             text-align: left;
           }
 
           .login-overlay-field {
-            margin-bottom: 12px;
+            margin-bottom: 14px;
           }
 
           .login-overlay-label {
             display: block;
-            margin: 0 0 6px 0;
+            margin: 0 0 8px 0;
             font-family: Roboto, sans-serif;
-            font-size: 12px;
-            line-height: 1.2;
-            font-weight: 700;
-            color: #062430;
+            font-size: 16px;
+            line-height: 1.15;
+            font-weight: 400;
+            color: #1b2e38;
             text-align: left;
           }
 
           .login-overlay-input {
             width: 100%;
-            height: 32px;
-            border-radius: 4px;
+            height: 42px;
+            border-radius: 8px;
             border: 1.5px solid #c7dbe3;
-            background: #f7f7f7;
-            padding: 0 10px;
+            background: #ffffff;
+            padding: 0 12px;
             box-sizing: border-box;
             font-family: Roboto, sans-serif;
-            font-size: 12px;
+            font-size: 16px;
             line-height: 1;
             font-weight: 400;
             color: #6f7f89;
@@ -119,22 +119,22 @@ export default function LoginOverlay({
 
           .login-overlay-divider {
             height: 1.5px;
-            background: #062430;
-            margin: 10px 0 10px;
+            background: rgba(6, 36, 48, 0.45);
+            margin: 12px 0 14px;
           }
 
           .login-overlay-footer {
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: space-between;
             gap: 12px;
           }
 
           .login-overlay-links {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
             flex: 1;
           }
 
@@ -143,27 +143,26 @@ export default function LoginOverlay({
             background: transparent;
             padding: 0;
             font-family: Roboto, sans-serif;
-            font-size: 8px;
-            line-height: 1.1;
+            font-size: 14px;
+            line-height: 1.2;
             font-weight: 400;
             color: #062430;
             text-decoration: underline;
             cursor: pointer;
-            white-space: nowrap;
           }
 
           .login-overlay-submit {
             border: none;
             background: #cb356e;
             color: white;
-            border-radius: 6px;
-            height: 28px;
-            min-width: 72px;
-            padding: 0 14px;
-            font-family: Roboto, sans-serif;
-            font-size: 11px;
+            border-radius: 8px;
+            height: 40px;
+            min-width: 96px;
+            padding: 0 18px;
+            font-family: Poppins, sans-serif;
+            font-size: 20px;
             line-height: 1;
-            font-weight: 700;
+            font-weight: 600;
             text-transform: uppercase;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.16);
@@ -188,6 +187,16 @@ export default function LoginOverlay({
 
             .login-overlay-panel {
               width: min(370px, 100%);
+            }
+
+            .login-overlay-title {
+              font-size: 28px;
+              line-height: 1.1;
+            }
+
+            .login-overlay-submit {
+              font-size: 18px;
+              min-width: 88px;
             }
           }
         `}
