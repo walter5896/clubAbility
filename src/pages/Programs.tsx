@@ -288,18 +288,9 @@ export default function Programs() {
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.14);
-            transition:
-              transform 0.2s ease,
-              box-shadow 0.2s ease,
-              filter 0.2s ease;
             display: flex;
             flex-direction: column;
             height: 100%;
-          }
-
-          .program-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 22px rgba(0,0,0,0.16);
           }
 
           .program-card-image {
