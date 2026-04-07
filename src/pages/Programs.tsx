@@ -25,84 +25,84 @@ export default function Programs() {
   const programs: ProgramCard[] = [
     {
       id: 1,
-      category: "Category Tag",
-      ageGroup: "Age Group Tag",
-      name: "Program Name",
+      category: "Computing",
+      ageGroup: "Ages 9+",
+      name: "Computing",
       description:
-        "Program information... Lorem ipsum dolor sit amet consectetur. Nascetur nulla senectus amet porttitor mauris orci lorem convallis convallis.",
-      startDate: "Starts Apr. 7",
+        "Build foundational computer skills in a hands-on class for students ages 9 and up. Learn in a supportive environment while strengthening creativity, problem-solving, and confidence with technology.",
+      startDate: "Starts Apr. 4",
     },
     {
       id: 2,
-      category: "Category Tag",
-      ageGroup: "Age Group Tag",
-      name: "Program Name",
+      category: "Special Event",
+      ageGroup: "All Ages",
+      name: "Adobe Experience",
       description:
-        "Program information... Lorem ipsum dolor sit amet consectetur. Nascetur nulla senectus amet porttitor mauris orci lorem convallis convallis.",
-      startDate: "Starts Apr. 7",
+        "Join a free Adobe experience event with professionals and explore generative AI, creative tools, and real-world technology careers. Great for students and families interested in digital creativity.",
+      startDate: "Starts Apr. 29",
     },
     {
       id: 3,
-      category: "Category Tag",
-      ageGroup: "Age Group Tag",
-      name: "Program Name",
+      category: "Artificial Intelligence",
+      ageGroup: "Ages 12+",
+      name: "AI Innovation Lab",
       description:
-        "Program information... Lorem ipsum dolor sit amet consectetur. Nascetur nulla senectus amet porttitor mauris orci lorem convallis convallis.",
-      startDate: "Starts Apr. 7",
+        "Discover how artificial intelligence works through guided activities and interactive projects. Students explore prompt writing, creative problem-solving, and practical AI tools in a beginner-friendly setting.",
+      startDate: "Starts May 3",
     },
     {
       id: 4,
-      category: "Category Tag",
-      ageGroup: "Age Group Tag",
-      name: "Program Name",
+      category: "Design",
+      ageGroup: "Ages 10+",
+      name: "Canva Design Basics",
       description:
-        "Program information... Lorem ipsum dolor sit amet consectetur. Nascetur nulla senectus amet porttitor mauris orci lorem convallis convallis.",
-      startDate: "Starts Apr. 7",
+        "Learn the fundamentals of digital design using Canva to create flyers, social graphics, and presentations. This course helps students build confidence with layout, color, and visual communication.",
+      startDate: "Starts Apr. 12",
     },
     {
       id: 5,
-      category: "Category Tag",
-      ageGroup: "Age Group Tag",
-      name: "Program Name",
+      category: "Marketing",
+      ageGroup: "Ages 12+",
+      name: "Marketing Essentials",
       description:
-        "Program information... Lorem ipsum dolor sit amet consectetur. Nascetur nulla senectus amet porttitor mauris orci lorem convallis convallis.",
-      startDate: "Starts Apr. 7",
+        "Explore branding, promotion, and digital communication through fun, real-world examples. Students learn how businesses and creators use design, messaging, and strategy to connect with audiences.",
+      startDate: "Starts Apr. 19",
     },
     {
       id: 6,
-      category: "Category Tag",
-      ageGroup: "Age Group Tag",
-      name: "Program Name",
+      category: "3D Design",
+      ageGroup: "Ages 11+",
+      name: "3D Design Studio",
       description:
-        "Program information... Lorem ipsum dolor sit amet consectetur. Nascetur nulla senectus amet porttitor mauris orci lorem convallis convallis.",
-      startDate: "Starts Apr. 7",
+        "Create imaginative 3D projects while learning the basics of modeling, spatial thinking, and digital design tools. Perfect for students who enjoy creativity, technology, and building things from scratch.",
+      startDate: "Starts May 10",
     },
     {
       id: 7,
-      category: "Category Tag",
-      ageGroup: "Age Group Tag",
-      name: "Program Name",
+      category: "Coding",
+      ageGroup: "Ages 10+",
+      name: "Intro to Coding",
       description:
-        "Program information... Lorem ipsum dolor sit amet consectetur. Nascetur nulla senectus amet porttitor mauris orci lorem convallis convallis.",
-      startDate: "Starts Apr. 7",
+        "Get started with coding concepts in a fun and approachable way through beginner-friendly activities and projects. Students practice logic, sequencing, and problem-solving while building real confidence.",
+      startDate: "Starts Apr. 26",
     },
     {
       id: 8,
-      category: "Category Tag",
-      ageGroup: "Age Group Tag",
-      name: "Program Name",
+      category: "Creative Tech",
+      ageGroup: "Ages 9+",
+      name: "Digital Creativity",
       description:
-        "Program information... Lorem ipsum dolor sit amet consectetur. Nascetur nulla senectus amet porttitor mauris orci lorem convallis convallis.",
-      startDate: "Starts Apr. 7",
+        "Combine technology and imagination through projects that introduce students to creative software, digital storytelling, and design thinking. A great entry point for learners who love making and exploring.",
+      startDate: "Starts May 17",
     },
     {
       id: 9,
-      category: "Category Tag",
-      ageGroup: "Age Group Tag",
-      name: "Program Name",
+      category: "STEM",
+      ageGroup: "All Ages",
+      name: "Future Tech Exploration",
       description:
-        "Program information... Lorem ipsum dolor sit amet consectetur. Nascetur nulla senectus amet porttitor mauris orci lorem convallis convallis.",
-      startDate: "Starts Apr. 7",
+        "Explore exciting pathways in STEM through hands-on experiences that introduce students to emerging tools and ideas. This class encourages curiosity, experimentation, and confidence in learning technology.",
+      startDate: "Starts Soon",
     },
   ];
 
@@ -555,7 +555,15 @@ export default function Programs() {
                   aria-label="Filter by category"
                 >
                   <option>All Categories</option>
-                  <option>Category Tag</option>
+                  <option>Computing</option>
+                  <option>Special Event</option>
+                  <option>Artificial Intelligence</option>
+                  <option>Design</option>
+                  <option>Marketing</option>
+                  <option>3D Design</option>
+                  <option>Coding</option>
+                  <option>Creative Tech</option>
+                  <option>STEM</option>
                 </select>
                 <ChevronDown size={18} className="filter-icon" />
               </div>
@@ -568,7 +576,10 @@ export default function Programs() {
                   aria-label="Filter by age"
                 >
                   <option>All Ages</option>
-                  <option>Age Group Tag</option>
+                  <option>Ages 9+</option>
+                  <option>Ages 10+</option>
+                  <option>Ages 11+</option>
+                  <option>Ages 12+</option>
                 </select>
                 <ChevronDown size={18} className="filter-icon" />
               </div>
