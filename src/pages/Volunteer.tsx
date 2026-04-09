@@ -13,6 +13,14 @@ export default function Volunteer() {
   const [selectedAvailability, setSelectedAvailability] = useState<string[]>([]);
   const [showAvailabilityOptions, setShowAvailabilityOptions] = useState(false);
 
+  const [firstName, setFirstName] = useState("Jane");
+  const [lastName, setLastName] = useState("Smith");
+  const [email, setEmail] = useState("example@email.com");
+  const [phone, setPhone] = useState("801 555-1234");
+  const [otherInterest, setOtherInterest] = useState("");
+  const [availabilityText, setAvailabilityText] = useState("");
+  const [notes, setNotes] = useState("");
+
   const toggleItem = (
     item: string,
     selected: string[],
@@ -148,11 +156,7 @@ export default function Volunteer() {
             justify-content: flex-start;
           }
 
-          .vol-benefit-card.dark {
-            background: #00384b;
-            color: white;
-          }
-
+          .vol-benefit-card.dark,
           .vol-benefit-card.teal {
             background: #00384b;
             color: white;
@@ -607,23 +611,39 @@ export default function Volunteer() {
                 <div className="vol-grid-2">
                   <div className="vol-field">
                     <label className="vol-label">First name</label>
-                    <input className="vol-input" defaultValue="Jane" />
+                    <input
+                      className="vol-input"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
                   </div>
 
                   <div className="vol-field">
                     <label className="vol-label">Last name</label>
-                    <input className="vol-input" defaultValue="Smith" />
+                    <input
+                      className="vol-input"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
                   </div>
                 </div>
 
                 <div className="vol-field">
                   <label className="vol-label">Email address</label>
-                  <input className="vol-input" defaultValue="example@email.com" />
+                  <input
+                    className="vol-input"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
 
                 <div className="vol-field">
                   <label className="vol-label">Phone number</label>
-                  <input className="vol-input" defaultValue="801 555-1234" />
+                  <input
+                    className="vol-input"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
                 </div>
               </div>
 
@@ -649,7 +669,12 @@ export default function Volunteer() {
                       <input type="checkbox" />
                       <span>Other:</span>
                     </label>
-                    <input className="vol-input" placeholder="Type Here" />
+                    <input
+                      className="vol-input"
+                      placeholder="Type Here"
+                      value={otherInterest}
+                      onChange={(e) => setOtherInterest(e.target.value)}
+                    />
                   </div>
                 </div>
               </div>
@@ -661,6 +686,8 @@ export default function Volunteer() {
                   <input
                     className="vol-input vol-free-input"
                     placeholder="Type Here Or Manually Select Times"
+                    value={availabilityText}
+                    onChange={(e) => setAvailabilityText(e.target.value)}
                   />
 
                   <div className="vol-select-wrap">
@@ -702,6 +729,8 @@ export default function Volunteer() {
                 <textarea
                   className="vol-textarea"
                   placeholder="Type Here to Form Message"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
                 />
               </div>
 

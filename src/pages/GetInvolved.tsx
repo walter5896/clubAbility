@@ -31,29 +31,21 @@ export default function GetInvolved() {
             padding: 28px 0 30px;
           }
 
-          .gi-banner-title {
-            margin: 0 0 8px 0;
-            font-size: 58px;
-            line-height: 1;
-            font-weight: 700;
-            color: white;
-            text-align: left;
-          }
-
           .gi-banner-row {
             display: flex;
             align-items: center;
             gap: 22px;
           }
 
-          .gi-banner-subtitle {
+          .gi-banner-title {
             margin: 0;
-            font-size: 28px;
-            line-height: 0.98;
+            font-size: 58px;
+            line-height: 1;
             font-weight: 700;
             color: white;
             text-align: left;
-            max-width: 430px;
+            white-space: nowrap;
+            font-family: Poppins, sans-serif;
           }
 
           .gi-banner-line {
@@ -125,6 +117,7 @@ export default function GetInvolved() {
             font-weight: 700;
             color: #062430;
             text-align: left;
+            font-family: Poppins, sans-serif;
           }
 
           .gi-text {
@@ -134,6 +127,7 @@ export default function GetInvolved() {
             color: #111111;
             text-align: left;
             max-width: 460px;
+            font-family: Roboto, sans-serif;
           }
 
           .gi-button {
@@ -152,6 +146,7 @@ export default function GetInvolved() {
               transform 0.18s ease,
               box-shadow 0.18s ease,
               filter 0.18s ease;
+            font-family: Poppins, sans-serif;
           }
 
           .gi-button:hover {
@@ -169,19 +164,15 @@ export default function GetInvolved() {
               padding: 0 18px;
             }
 
-            .gi-banner-title {
-              font-size: 42px;
-            }
-
             .gi-banner-row {
               flex-direction: column;
               align-items: flex-start;
               gap: 12px;
             }
 
-            .gi-banner-subtitle {
-              font-size: 22px;
-              max-width: none;
+            .gi-banner-title {
+              font-size: 42px;
+              white-space: normal;
             }
 
             .gi-banner-line {
@@ -214,11 +205,8 @@ export default function GetInvolved() {
       <section className="gi-banner">
         <div className="gi-shell">
           <div className="gi-inner">
-            <h1 className="gi-banner-title">Get Involved</h1>
             <div className="gi-banner-row">
-              <p className="gi-banner-subtitle">
-                Innovation and knowledge open doors to the future.
-              </p>
+              <h1 className="gi-banner-title">Get Involved</h1>
               <div className="gi-banner-line" />
             </div>
           </div>

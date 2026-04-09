@@ -530,10 +530,10 @@ export default function ProgramDetail() {
                 </p>
 
                 <p className="pd-about-copy">
-                  Lorem ipsum dolor sit amet consectetur. Magna malesuada ornare in non sem lacus
-                  duis cursus accumsan. Magna eleifend adipiscing donec lectus non id dui at dui.
-                  Maecenas semper diam diam mauris sit. Duis viverra mus pellentesque fermentum.
-                  Risus netus et fusce mattis eu quam arcu eu.
+                  Students will build confidence using technology through guided instruction,
+                  hands-on activities, and real practice with core computer concepts. This program
+                  is designed to support beginners while helping learners strengthen problem-solving,
+                  digital literacy, and everyday computer skills in a welcoming environment.
                 </p>
 
                 <div style={{ marginTop: "44px" }}>

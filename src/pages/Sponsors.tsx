@@ -381,7 +381,7 @@ export default function Sponsors() {
               <button
                 className="sponsor-btn"
                 type="button"
-                onClick={() => navigate("/get-involved")}
+                onClick={() => navigate("/contact")}
               >
                 Become a Sponsor
               </button>
