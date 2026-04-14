@@ -180,10 +180,13 @@ export default function Home() {
           }
 
           .hero-copy {
-            max-width: 560px;
-            text-align: left;
-          }
-
+  max-width: 560px;
+  text-align: left;
+  background: #062430;
+  border-radius: 12px;
+  padding: 20px 20px 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
           .hero-copy h1 {
             margin: 0 0 28px 0;
             font-family: Poppins, sans-serif;
