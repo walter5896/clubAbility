@@ -1,9 +1,102 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import { ChevronDown, Phone, MapPin, Mail } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function GetStarted() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+
+  const copy = {
+    en: {
+      bannerTitle: "Class Interest Form",
+      introLine1: "Tell us about your student and the programs you're interested in.",
+      introLine2: "We'll follow up with the next steps.",
+      formTitle: "Class Interest Form",
+      yourInfo: "Your info",
+      timeDayPreference: "Time & Day Preference",
+      coursesInterested: "Courses Interested In",
+      languageLabel: "Language / Idioma",
+      modalityPreference: "Modality Preference",
+      cityIfInPerson: "Select City If In Person",
+      additionalNotes: "Additional Notes (Optional)",
+      submit: "Submit",
+      needHelp: "Need Help?",
+      helpLine1: "Have questions about programs or enrollment?",
+      helpLine2: "Contact our team and we'll be happy to assist you.",
+      firstName: "First name",
+      lastName: "Last name",
+      emailAddress: "Email address",
+      phoneNumber: "Phone number",
+      other: "Other:",
+      typeHere: "Type Here",
+      coursesPlaceholder: "Type Here Or Manually Select Courses",
+      selectCourses: "Select Courses",
+      cityPlaceholder: "Type Here Or Manually Select A City",
+      selectCity: "Select City",
+      notesPlaceholder: "Type Here to Form Message",
+      firstNameDefault: "Jane",
+      lastNameDefault: "Smith",
+      emailDefault: "example@email.com",
+      phoneDefault: "(801) 555-1234",
+      courses: ["AI Innovation", "Marketing", "Canva Basics", "3D Design"],
+      cities: ["Bountiful", "Salt Lake City", "West Valley", "Ogden", "Kearns"],
+      timeOptions: [
+        "Morning (9am–12pm)",
+        "Noon (12pm–2pm)",
+        "Afternoon (2pm–6pm)",
+        "Evening (6pm–9pm)",
+      ],
+      dayOptions: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      preferenceLanguageOptions: ["Spanish", "English"],
+      modalityOptions: ["In Person", "Online / Virtual"],
+    },
+    es: {
+      bannerTitle: "Formulario de Interés de Clase",
+      introLine1: "Cuéntanos sobre tu estudiante y los programas que te interesan.",
+      introLine2: "Te contactaremos con los próximos pasos.",
+      formTitle: "Formulario de Interés de Clase",
+      yourInfo: "Tu información",
+      timeDayPreference: "Preferencia de Horario y Día",
+      coursesInterested: "Cursos de Interés",
+      languageLabel: "Idioma / Language",
+      modalityPreference: "Preferencia de Modalidad",
+      cityIfInPerson: "Selecciona la Ciudad si es Presencial",
+      additionalNotes: "Notas Adicionales (Opcional)",
+      submit: "Enviar",
+      needHelp: "¿Necesitas Ayuda?",
+      helpLine1: "¿Tienes preguntas sobre programas o inscripción?",
+      helpLine2: "Contacta a nuestro equipo y con gusto te ayudaremos.",
+      firstName: "Nombre",
+      lastName: "Apellido",
+      emailAddress: "Correo electrónico",
+      phoneNumber: "Número de teléfono",
+      other: "Otro:",
+      typeHere: "Escribe Aquí",
+      coursesPlaceholder: "Escribe Aquí O Selecciona Cursos Manualmente",
+      selectCourses: "Seleccionar Cursos",
+      cityPlaceholder: "Escribe Aquí O Selecciona Una Ciudad Manualmente",
+      selectCity: "Seleccionar Ciudad",
+      notesPlaceholder: "Escribe Aquí tu Mensaje",
+      firstNameDefault: "Juana",
+      lastNameDefault: "Pérez",
+      emailDefault: "ejemplo@correo.com",
+      phoneDefault: "(801) 555-1234",
+      courses: ["Innovación en IA", "Marketing", "Conceptos Básicos de Canva", "Diseño 3D"],
+      cities: ["Bountiful", "Salt Lake City", "West Valley", "Ogden", "Kearns"],
+      timeOptions: [
+        "Mañana (9am–12pm)",
+        "Mediodía (12pm–2pm)",
+        "Tarde (2pm–6pm)",
+        "Noche (6pm–9pm)",
+      ],
+      dayOptions: ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+      preferenceLanguageOptions: ["Español", "Inglés"],
+      modalityOptions: ["Presencial", "En Línea / Virtual"],
+    },
+  } as const;
+
+  const t = copy[language];
 
   const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
   const [selectedCities, setSelectedCities] = useState<string[]>([]);
@@ -26,17 +119,12 @@ export default function GetStarted() {
     }
   };
 
-  const courses = ["AI Innovation", "Marketing", "Canva Basics", "3D Design"];
-  const cities = ["Bountiful", "Salt Lake City", "West Valley", "Ogden", "Kearns"];
-  const timeOptions = [
-    "Morning (9am–12pm)",
-    "Noon (12pm–2pm)",
-    "Afternoon (2pm–6pm)",
-    "Evening (6pm–9pm)",
-  ];
-  const dayOptions = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const languageOptions = ["Spanish", "English"];
-  const modalityOptions = ["In Person", "Online / Virtual"];
+  const courses = t.courses;
+  const cities = t.cities;
+  const timeOptions = t.timeOptions;
+  const dayOptions = t.dayOptions;
+  const preferenceLanguageOptions = t.preferenceLanguageOptions;
+  const modalityOptions = t.modalityOptions;
 
   return (
     <div className="get-started-page">
@@ -62,22 +150,22 @@ export default function GetStarted() {
 
           .gs-banner {
             background: #0c3a4a;
-            padding: 28px 0 30px;
+            padding: 22px 0 24px;
           }
 
           .gs-banner-row {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
           }
 
           .gs-banner h1 {
             margin: 0;
             color: white;
             font-family: Poppins, sans-serif;
-            font-size: 57px;
-            line-height: 57px;
-            font-weight: 700;
+            font-size: 40px;
+            line-height: 40px;
+            font-weight: 600;
             white-space: nowrap;
           }
 
@@ -86,7 +174,7 @@ export default function GetStarted() {
             background: #e8206a;
             flex: 1;
             border-radius: 999px;
-            margin-top: 8px;
+            margin-top: 4px;
           }
 
           .gs-intro {
@@ -112,8 +200,8 @@ export default function GetStarted() {
           .gs-form-title {
             margin: 0 0 34px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: center;
@@ -135,8 +223,8 @@ export default function GetStarted() {
           .gs-panel-title {
             margin: 0 0 18px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -330,8 +418,8 @@ export default function GetStarted() {
           .gs-help-title {
             margin: 0 0 20px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: center;
@@ -391,8 +479,8 @@ export default function GetStarted() {
             }
 
             .gs-banner h1 {
-              font-size: 42px;
-              line-height: 1.05;
+              font-size: 32px;
+              line-height: 36px;
               white-space: normal;
             }
 
@@ -408,13 +496,14 @@ export default function GetStarted() {
             }
 
             .gs-form-title {
-              font-size: 30px;
-              line-height: 1.1;
+              font-size: 26px;
+              line-height: 30px;
             }
 
-            .gs-panel-title {
-              font-size: 28px;
-              line-height: 1.1;
+            .gs-panel-title,
+            .gs-help-title {
+              font-size: 26px;
+              line-height: 30px;
             }
 
             .gs-grid-2 {
@@ -441,7 +530,7 @@ export default function GetStarted() {
         <div className="gs-shell">
           <div className="gs-inner">
             <div className="gs-banner-row">
-              <h1>Class Interest Form</h1>
+              <h1>{t.bannerTitle}</h1>
               <div className="gs-banner-line" />
             </div>
           </div>
@@ -452,9 +541,9 @@ export default function GetStarted() {
         <div className="gs-shell">
           <div className="gs-inner">
             <div className="gs-intro-copy">
-              Tell us about your student and the programs you're interested in.
+              {t.introLine1}
               <br />
-              We'll follow up with the next steps.
+              {t.introLine2}
             </div>
           </div>
         </div>
@@ -463,37 +552,37 @@ export default function GetStarted() {
       <section className="gs-content">
         <div className="gs-shell">
           <div className="gs-inner">
-            <h2 className="gs-form-title">Class Interest Form</h2>
+            <h2 className="gs-form-title">{t.formTitle}</h2>
 
             <div className="gs-stack">
               <div className="gs-panel">
-                <h3 className="gs-panel-title">Your info</h3>
+                <h3 className="gs-panel-title">{t.yourInfo}</h3>
 
                 <div className="gs-grid-2">
                   <div className="gs-field">
-                    <label className="gs-label">First name</label>
-                    <input className="gs-input" defaultValue="Jane" />
+                    <label className="gs-label">{t.firstName}</label>
+                    <input className="gs-input" defaultValue={t.firstNameDefault} />
                   </div>
 
                   <div className="gs-field">
-                    <label className="gs-label">Last name</label>
-                    <input className="gs-input" defaultValue="Smith" />
+                    <label className="gs-label">{t.lastName}</label>
+                    <input className="gs-input" defaultValue={t.lastNameDefault} />
                   </div>
                 </div>
 
                 <div className="gs-field">
-                  <label className="gs-label">Email address</label>
-                  <input className="gs-input" defaultValue="example@email.com" />
+                  <label className="gs-label">{t.emailAddress}</label>
+                  <input className="gs-input" defaultValue={t.emailDefault} />
                 </div>
 
                 <div className="gs-field">
-                  <label className="gs-label">Phone number</label>
-                  <input className="gs-input" defaultValue="(801) 555-1234" />
+                  <label className="gs-label">{t.phoneNumber}</label>
+                  <input className="gs-input" defaultValue={t.phoneDefault} />
                 </div>
               </div>
 
               <div className="gs-panel">
-                <h3 className="gs-panel-title">Time &amp; Day Preference</h3>
+                <h3 className="gs-panel-title">{t.timeDayPreference}</h3>
 
                 <div className="gs-check-grid">
                   {timeOptions.map((option) => (
@@ -510,9 +599,9 @@ export default function GetStarted() {
                   <div className="gs-inline-other">
                     <label className="gs-checkbox">
                       <input type="checkbox" />
-                      <span>Other:</span>
+                      <span>{t.other}</span>
                     </label>
-                    <input className="gs-input" placeholder="Type Here" />
+                    <input className="gs-input" placeholder={t.typeHere} />
                   </div>
 
                   <div className="gs-check-row">
@@ -531,12 +620,12 @@ export default function GetStarted() {
               </div>
 
               <div className="gs-panel">
-                <h3 className="gs-panel-title">Courses Interested In</h3>
+                <h3 className="gs-panel-title">{t.coursesInterested}</h3>
 
                 <div className="gs-select-area">
                   <input
                     className="gs-input gs-free-input"
-                    placeholder="Type Here Or Manually Select Courses"
+                    placeholder={t.coursesPlaceholder}
                   />
 
                   <div className="gs-select-wrap">
@@ -545,7 +634,7 @@ export default function GetStarted() {
                       className="gs-select-trigger"
                       onClick={() => setShowCourseOptions((prev) => !prev)}
                     >
-                      Select Courses
+                      {t.selectCourses}
                     </button>
                     <ChevronDown size={14} className="gs-select-icon" />
                   </div>
@@ -570,10 +659,10 @@ export default function GetStarted() {
               </div>
 
               <div className="gs-panel">
-                <h3 className="gs-panel-title">Language / Idioma</h3>
+                <h3 className="gs-panel-title">{t.languageLabel}</h3>
 
                 <div className="gs-check-grid">
-                  {languageOptions.map((option) => (
+                  {preferenceLanguageOptions.map((option) => (
                     <label key={option} className="gs-checkbox">
                       <input
                         type="checkbox"
@@ -589,15 +678,15 @@ export default function GetStarted() {
                   <div className="gs-inline-other">
                     <label className="gs-checkbox">
                       <input type="checkbox" />
-                      <span>Other:</span>
+                      <span>{t.other}</span>
                     </label>
-                    <input className="gs-input" placeholder="Type Here" />
+                    <input className="gs-input" placeholder={t.typeHere} />
                   </div>
                 </div>
               </div>
 
               <div className="gs-panel">
-                <h3 className="gs-panel-title">Modality Preference</h3>
+                <h3 className="gs-panel-title">{t.modalityPreference}</h3>
 
                 <div className="gs-check-grid" style={{ marginBottom: "16px" }}>
                   {modalityOptions.map((option) => (
@@ -616,19 +705,19 @@ export default function GetStarted() {
                   <div className="gs-inline-other">
                     <label className="gs-checkbox">
                       <input type="checkbox" />
-                      <span>Other:</span>
+                      <span>{t.other}</span>
                     </label>
-                    <input className="gs-input" placeholder="Type Here" />
+                    <input className="gs-input" placeholder={t.typeHere} />
                   </div>
                 </div>
 
                 <div className="gs-field">
-                  <label className="gs-label">Select City If In Person</label>
+                  <label className="gs-label">{t.cityIfInPerson}</label>
 
                   <div className="gs-select-area" style={{ marginBottom: "10px" }}>
                     <input
                       className="gs-input gs-free-input"
-                      placeholder="Type Here Or Manually Select A City"
+                      placeholder={t.cityPlaceholder}
                     />
 
                     <div className="gs-select-wrap">
@@ -637,7 +726,7 @@ export default function GetStarted() {
                         className="gs-select-trigger"
                         onClick={() => setShowCityOptions((prev) => !prev)}
                       >
-                        Select City
+                        {t.selectCity}
                       </button>
                       <ChevronDown size={14} className="gs-select-icon" />
                     </div>
@@ -663,10 +752,10 @@ export default function GetStarted() {
               </div>
 
               <div className="gs-panel">
-                <h3 className="gs-panel-title">Additional Notes (Optional)</h3>
+                <h3 className="gs-panel-title">{t.additionalNotes}</h3>
                 <textarea
                   className="gs-textarea"
-                  placeholder="Type Here to Form Message"
+                  placeholder={t.notesPlaceholder}
                 />
               </div>
 
@@ -676,19 +765,19 @@ export default function GetStarted() {
                   type="button"
                   onClick={() => navigate("/thank-you")}
                 >
-                  Submit
+                  {t.submit}
                 </button>
               </div>
             </div>
 
             <div className="gs-help">
-              <h3 className="gs-help-title">Need Help?</h3>
+              <h3 className="gs-help-title">{t.needHelp}</h3>
 
               <div className="gs-help-body">
                 <p className="gs-help-copy">
-                  Have questions about programs or enrollment?
+                  {t.helpLine1}
                   <br />
-                  Contact our team and we'll be happy to assist you.
+                  {t.helpLine2}
                 </p>
 
                 <div className="gs-help-list">

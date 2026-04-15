@@ -1,13 +1,111 @@
 import { ChevronLeft, ChevronDown, Apple } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Donate() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+
+  const copy = {
+    en: {
+      bannerTitle: "Donate",
+      breadcrumb: "Get Involved",
+      yourInfo: "Your info",
+      billingAddress: "Billing address",
+      payment: "Payment",
+      donationSummary: "Donation summary",
+      firstName: "First name",
+      lastName: "Last name",
+      emailAddress: "Email address",
+      phoneNumber: "Phone number",
+      countryRegion: "Country/region",
+      address: "Address",
+      apartment: "Apartment, suite, etc.",
+      zipCode: "ZIP code",
+      cardNumber: "Card number",
+      expirationDate: "Expiration date",
+      securityCode: "Security code",
+      nameOnCard: "Name on card",
+      pickDonation: "Pick a Donation",
+      monthlyDonation: "Making this a monthly donation?",
+      monthlyDonationAria: "Make this a monthly donation",
+      donate: "Donate",
+      applePay: "Apple Pay",
+      googlePay: "Google Pay",
+      helpText: "Need any help with registration? We’re happy to assist.",
+      countryDefault: "United States",
+      firstNameDefault: "Jane",
+      lastNameDefault: "Smith",
+      emailDefault: "example@email.com",
+      phoneDefault: "(801) 555-1234",
+      addressDefault: "123 Main Street",
+      apartmentDefault: "(optional)",
+      zipDefault: "00000",
+      cardNumberDefault: "0000 0000 0000 0000",
+      expirationDefault: "MM / YY",
+      securityDefault: "000",
+      cardNameDefault: "Jane Smith",
+    },
+    es: {
+      bannerTitle: "Donar",
+      breadcrumb: "Participa",
+      yourInfo: "Tu información",
+      billingAddress: "Dirección de facturación",
+      payment: "Pago",
+      donationSummary: "Resumen de donación",
+      firstName: "Nombre",
+      lastName: "Apellido",
+      emailAddress: "Correo electrónico",
+      phoneNumber: "Número de teléfono",
+      countryRegion: "País/región",
+      address: "Dirección",
+      apartment: "Apartamento, suite, etc.",
+      zipCode: "Código postal",
+      cardNumber: "Número de tarjeta",
+      expirationDate: "Fecha de vencimiento",
+      securityCode: "Código de seguridad",
+      nameOnCard: "Nombre en la tarjeta",
+      pickDonation: "Elige una donación",
+      monthlyDonation: "¿Hacer esto una donación mensual?",
+      monthlyDonationAria: "Hacer esto una donación mensual",
+      donate: "Donar",
+      applePay: "Apple Pay",
+      googlePay: "Google Pay",
+      helpText: "¿Necesitas ayuda con el registro? Con gusto te ayudamos.",
+      countryDefault: "Estados Unidos",
+      firstNameDefault: "Juana",
+      lastNameDefault: "Pérez",
+      emailDefault: "ejemplo@correo.com",
+      phoneDefault: "(801) 555-1234",
+      addressDefault: "123 Main Street",
+      apartmentDefault: "(opcional)",
+      zipDefault: "00000",
+      cardNumberDefault: "0000 0000 0000 0000",
+      expirationDefault: "MM / AA",
+      securityDefault: "000",
+      cardNameDefault: "Juana Pérez",
+    },
+  } as const;
+
+  const t = copy[language];
+
+  const donationOptions: string[] = [t.pickDonation, "$25", "$50", "$100"];
+  const countryOptions: string[] = [t.countryDefault];
 
   const [monthly, setMonthly] = useState(false);
-  const [donationAmount, setDonationAmount] = useState("Pick a Donation");
-  const [country, setCountry] = useState("United States");
+  const [donationAmount, setDonationAmount] = useState<string>(donationOptions[0]);
+  const [country, setCountry] = useState<string>(countryOptions[0]);
+
+  const currentDonationOptions: string[] = donationOptions;
+  const donationValue = currentDonationOptions.includes(donationAmount)
+    ? donationAmount
+    : currentDonationOptions[0];
+
+  const currentCountryOptions: string[] = countryOptions;
+  const countryValue = currentCountryOptions.includes(country)
+    ? country
+    : currentCountryOptions[0];
 
   return (
     <div className="donate-page">
@@ -45,8 +143,8 @@ export default function Donate() {
             margin: 0;
             color: white;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 40px;
+            line-height: 40px;
             font-weight: 600;
             white-space: nowrap;
           }
@@ -104,8 +202,8 @@ export default function Donate() {
           .panel-title {
             margin: 0 0 18px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -346,13 +444,13 @@ export default function Donate() {
             }
 
             .donate-banner-title {
-              font-size: 28px;
-              line-height: 1.1;
+              font-size: 32px;
+              line-height: 36px;
             }
 
             .panel-title {
-              font-size: 28px;
-              line-height: 1.1;
+              font-size: 26px;
+              line-height: 30px;
             }
 
             .field-grid-2,
@@ -371,7 +469,7 @@ export default function Donate() {
         <div className="donate-shell">
           <div className="donate-inner">
             <div className="donate-banner-row">
-              <h2 className="donate-banner-title">Donate</h2>
+              <h2 className="donate-banner-title">{t.bannerTitle}</h2>
 
               <button
                 className="donate-breadcrumb"
@@ -379,7 +477,7 @@ export default function Donate() {
                 type="button"
               >
                 <ChevronLeft size={18} />
-                <span>Get Involved</span>
+                <span>{t.breadcrumb}</span>
               </button>
 
               <div className="donate-banner-line" />
@@ -394,45 +492,47 @@ export default function Donate() {
             <div className="donate-grid">
               <div className="left-stack">
                 <div className="panel">
-                  <h2 className="panel-title">Your info</h2>
+                  <h2 className="panel-title">{t.yourInfo}</h2>
 
                   <div className="field-grid-2">
                     <div className="field">
-                      <label className="label">First name</label>
-                      <input className="input" defaultValue="Jane" />
+                      <label className="label">{t.firstName}</label>
+                      <input className="input" defaultValue={t.firstNameDefault} />
                     </div>
 
                     <div className="field">
-                      <label className="label">Last name</label>
-                      <input className="input" defaultValue="Smith" />
+                      <label className="label">{t.lastName}</label>
+                      <input className="input" defaultValue={t.lastNameDefault} />
                     </div>
                   </div>
 
                   <div className="field">
-                    <label className="label">Email address</label>
-                    <input className="input" defaultValue="example@email.com" />
+                    <label className="label">{t.emailAddress}</label>
+                    <input className="input" defaultValue={t.emailDefault} />
                   </div>
 
                   <div className="field">
-                    <label className="label">Phone number</label>
-                    <input className="input" defaultValue="(801) 555-1234" />
+                    <label className="label">{t.phoneNumber}</label>
+                    <input className="input" defaultValue={t.phoneDefault} />
                   </div>
 
                   <div className="panel-divider" />
                 </div>
 
                 <div className="panel">
-                  <h2 className="panel-title">Billing address</h2>
+                  <h2 className="panel-title">{t.billingAddress}</h2>
 
                   <div className="field">
-                    <label className="label">Country/region</label>
+                    <label className="label">{t.countryRegion}</label>
                     <div className="select-wrap">
                       <select
                         className="select"
-                        value={country}
+                        value={countryValue}
                         onChange={(e) => setCountry(e.target.value)}
                       >
-                        <option>United States</option>
+                        {currentCountryOptions.map((option) => (
+                          <option key={option}>{option}</option>
+                        ))}
                       </select>
                       <ChevronDown size={18} className="select-icon" />
                     </div>
@@ -440,75 +540,74 @@ export default function Donate() {
 
                   <div className="field-grid-2">
                     <div className="field">
-                      <label className="label">First name</label>
-                      <input className="input" defaultValue="Jane" />
+                      <label className="label">{t.firstName}</label>
+                      <input className="input" defaultValue={t.firstNameDefault} />
                     </div>
 
                     <div className="field">
-                      <label className="label">Last name</label>
-                      <input className="input" defaultValue="Smith" />
+                      <label className="label">{t.lastName}</label>
+                      <input className="input" defaultValue={t.lastNameDefault} />
                     </div>
                   </div>
 
                   <div className="field">
-                    <label className="label">Address</label>
-                    <input className="input" defaultValue="123 Main Street" />
+                    <label className="label">{t.address}</label>
+                    <input className="input" defaultValue={t.addressDefault} />
                   </div>
 
                   <div className="field">
-                    <label className="label">Apartment, suite, etc.</label>
-                    <input className="input" defaultValue="(optional)" />
+                    <label className="label">{t.apartment}</label>
+                    <input className="input" defaultValue={t.apartmentDefault} />
                   </div>
 
                   <div className="field">
-                    <label className="label">ZIP code</label>
-                    <input className="input" defaultValue="00000" />
+                    <label className="label">{t.zipCode}</label>
+                    <input className="input" defaultValue={t.zipDefault} />
                   </div>
                 </div>
 
                 <div className="panel">
-                  <h2 className="panel-title">Payment</h2>
+                  <h2 className="panel-title">{t.payment}</h2>
 
                   <div className="field">
-                    <label className="label">Card number</label>
-                    <input className="input" defaultValue="0000 0000 0000 0000" />
+                    <label className="label">{t.cardNumber}</label>
+                    <input className="input" defaultValue={t.cardNumberDefault} />
                   </div>
 
                   <div className="field-grid-2">
                     <div className="field">
-                      <label className="label">Expiration date</label>
-                      <input className="input" defaultValue="MM / YY" />
+                      <label className="label">{t.expirationDate}</label>
+                      <input className="input" defaultValue={t.expirationDefault} />
                     </div>
 
                     <div className="field">
-                      <label className="label">Security code</label>
-                      <input className="input" defaultValue="000" />
+                      <label className="label">{t.securityCode}</label>
+                      <input className="input" defaultValue={t.securityDefault} />
                     </div>
                   </div>
 
                   <div className="field">
-                    <label className="label">Name on card</label>
-                    <input className="input" defaultValue="Jane Smith" />
+                    <label className="label">{t.nameOnCard}</label>
+                    <input className="input" defaultValue={t.cardNameDefault} />
                   </div>
                 </div>
               </div>
 
               <div className="right-stack">
                 <div className="panel">
-                  <h2 className="panel-title">Donation summary</h2>
+                  <h2 className="panel-title">{t.donationSummary}</h2>
 
                   <div className="summary-box" />
 
                   <div className="select-wrap summary-select">
                     <select
                       className="select"
-                      value={donationAmount}
+                      value={donationValue}
                       onChange={(e) => setDonationAmount(e.target.value)}
                     >
-                      <option>Pick a Donation</option>
-                      <option>$25</option>
-                      <option>$50</option>
-                      <option>$100</option>
+                      {currentDonationOptions.map((option) => (
+                        <option key={option}>{option}</option>
+                      ))}
                     </select>
                     <ChevronDown size={18} className="select-icon" />
                   </div>
@@ -518,10 +617,10 @@ export default function Donate() {
                       type="button"
                       className={`checkbox ${monthly ? "checked" : ""}`}
                       onClick={() => setMonthly((prev) => !prev)}
-                      aria-label="Make this a monthly donation"
+                      aria-label={t.monthlyDonationAria}
                       aria-pressed={monthly}
                     />
-                    <div className="checkbox-label">Making this a monthly donation?</div>
+                    <div className="checkbox-label">{t.monthlyDonation}</div>
                   </div>
 
                   <div className="summary-divider" />
@@ -531,24 +630,24 @@ export default function Donate() {
                     type="button"
                     onClick={() => navigate("/thank-you")}
                   >
-                    Donate
+                    {t.donate}
                   </button>
 
                   <div className="pay-row">
                     <button className="btn pay-btn" type="button">
                       <Apple size={18} />
-                      <span>Apple Pay</span>
+                      <span>{t.applePay}</span>
                     </button>
 
                     <button className="btn pay-btn" type="button">
                       <span style={{ fontWeight: 700 }}>G</span>
-                      <span>Google Pay</span>
+                      <span>{t.googlePay}</span>
                     </button>
                   </div>
                 </div>
 
                 <div className="help-card">
-                  <p>Need any help with registration? We’re happy to assist.</p>
+                  <p>{t.helpText}</p>
                   <div className="help-phone">+1 (385) 217-1291</div>
                 </div>
               </div>

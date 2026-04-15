@@ -1,5 +1,6 @@
 import { ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 import heroImg from "../assets/clubability/sponsors/littlegirl.svg";
 import sponsor1 from "../assets/clubability/sponsors/sponsor1.svg";
@@ -18,19 +19,69 @@ type SponsorLogo = {
 
 export default function Sponsors() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+
+  const copy = {
+    en: {
+      bannerTitle: "Our Sponsors",
+      breadcrumb: "Get Involved",
+      ctaTitle: "Interested in becoming a sponsor?",
+      ctaText:
+        "Becoming a Club Ability sponsor helps support affordable, high-quality STEM education for underserved students across Utah. Your partnership expands our programs while giving your organization visibility among families, educators, and community leaders. Join us in helping every child gain the opportunity to learn and succeed in a technology-driven world.",
+      ctaButton: "Become a Sponsor",
+      bottomTitle: "To Our Sponsors",
+      bottomText:
+        "We are deeply grateful to our sponsors for investing in the mission of Club Ability. Your generous support makes it possible for us to provide high-quality, affordable STEM and technology education to students who need it most. Because of your commitment, children across Utah are gaining the skills and confidence to pursue futures they once only dreamed of. Thank you for believing in our students — your partnership and generosity make all the difference.",
+      heroAlt: "Club Ability sponsor programs",
+      logos: {
+        sponsor1: "Lucid",
+        sponsor2: "Rancho Markets",
+        sponsor3: "Larry H. & Gail Miller Family Foundation",
+        sponsor4: "PROG Dev Center",
+        sponsor5: "Weber State University Community Education Center",
+        sponsor6: "Comcast",
+        sponsor7: "Intermountain Health",
+        sponsor8: "Salt Lake City School District",
+      },
+    },
+    es: {
+      bannerTitle: "Nuestros Patrocinadores",
+      breadcrumb: "Participa",
+      ctaTitle: "¿Te interesa convertirte en patrocinador?",
+      ctaText:
+        "Convertirte en patrocinador de Club Ability ayuda a apoyar una educación STEM accesible y de alta calidad para estudiantes desatendidos en todo Utah. Tu colaboración amplía nuestros programas mientras brinda visibilidad a tu organización entre familias, educadores y líderes comunitarios. Únete a nosotros para ayudar a que cada niño tenga la oportunidad de aprender y tener éxito en un mundo impulsado por la tecnología.",
+      ctaButton: "Conviértete en Patrocinador",
+      bottomTitle: "A Nuestros Patrocinadores",
+      bottomText:
+        "Estamos profundamente agradecidos con nuestros patrocinadores por invertir en la misión de Club Ability. Su generoso apoyo hace posible que brindemos educación STEM y tecnológica asequible y de alta calidad a los estudiantes que más la necesitan. Gracias a su compromiso, niños de todo Utah están desarrollando las habilidades y la confianza para perseguir futuros que antes solo podían imaginar. Gracias por creer en nuestros estudiantes: su colaboración y generosidad marcan toda la diferencia.",
+      heroAlt: "Programas patrocinados de Club Ability",
+      logos: {
+        sponsor1: "Lucid",
+        sponsor2: "Rancho Markets",
+        sponsor3: "Fundación Familiar Larry H. & Gail Miller",
+        sponsor4: "PROG Dev Center",
+        sponsor5: "Centro de Educación Comunitaria de Weber State University",
+        sponsor6: "Comcast",
+        sponsor7: "Intermountain Health",
+        sponsor8: "Distrito Escolar de Salt Lake City",
+      },
+    },
+  } as const;
+
+  const t = copy[language];
 
   const topRow: SponsorLogo[] = [
-    { image: sponsor1, alt: "Lucid" },
-    { image: sponsor2, alt: "Rancho Markets" },
-    { image: sponsor3, alt: "Larry H. & Gail Miller Family Foundation" },
-    { image: sponsor4, alt: "PROG Dev Center" },
+    { image: sponsor1, alt: t.logos.sponsor1 },
+    { image: sponsor2, alt: t.logos.sponsor2 },
+    { image: sponsor3, alt: t.logos.sponsor3 },
+    { image: sponsor4, alt: t.logos.sponsor4 },
   ];
 
   const bottomRow: SponsorLogo[] = [
-    { image: sponsor5, alt: "Weber State University Community Education Center" },
-    { image: sponsor6, alt: "Comcast" },
-    { image: sponsor7, alt: "Intermountain Health" },
-    { image: sponsor8, alt: "Salt Lake City School District" },
+    { image: sponsor5, alt: t.logos.sponsor5 },
+    { image: sponsor6, alt: t.logos.sponsor6 },
+    { image: sponsor7, alt: t.logos.sponsor7 },
+    { image: sponsor8, alt: t.logos.sponsor8 },
   ];
 
   return (
@@ -56,7 +107,7 @@ export default function Sponsors() {
 
           .sponsors-banner {
             background: #0c3a4a;
-            padding: 28px 0 30px;
+            padding: 22px 0 24px;
           }
 
           .sponsors-banner-row {
@@ -70,9 +121,9 @@ export default function Sponsors() {
             margin: 0;
             color: white;
             font-family: Poppins, sans-serif;
-            font-size: 57px;
-            line-height: 57px;
-            font-weight: 700;
+            font-size: 40px;
+            line-height: 40px;
+            font-weight: 600;
             white-space: nowrap;
           }
 
@@ -115,7 +166,6 @@ export default function Sponsors() {
             grid-template-columns: 1fr 1.02fr;
             gap: 22px;
             align-items: center;
-            margin-bottom: 56px;
           }
 
           .intro-image-wrap {
@@ -136,8 +186,8 @@ export default function Sponsors() {
           .intro-copy h2 {
             margin: 0 0 14px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -202,13 +252,14 @@ export default function Sponsors() {
             border-radius: 16px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.10);
             padding: 28px 28px 30px;
+            margin-bottom: 56px;
           }
 
           .cta-box h2 {
             margin: 0 0 18px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #111111;
             text-align: left;
@@ -250,6 +301,10 @@ export default function Sponsors() {
             filter: brightness(0.98);
           }
 
+          .bottom-intro-card {
+            margin-top: 54px;
+          }
+
           @media (max-width: 1100px) {
             .intro-card {
               grid-template-columns: 1fr;
@@ -276,15 +331,15 @@ export default function Sponsors() {
             }
 
             .sponsors-banner-title {
-              font-size: 42px;
-              line-height: 1.05;
+              font-size: 32px;
+              line-height: 36px;
               white-space: normal;
             }
 
             .intro-copy h2,
             .cta-box h2 {
-              font-size: 28px;
-              line-height: 1.1;
+              font-size: 26px;
+              line-height: 30px;
             }
 
             .logo-row.top-row,
@@ -304,6 +359,10 @@ export default function Sponsors() {
             .sponsor-btn {
               font-size: 18px;
             }
+
+            .bottom-intro-card {
+              margin-top: 40px;
+            }
           }
         `}
       </style>
@@ -312,7 +371,7 @@ export default function Sponsors() {
         <div className="sponsors-shell">
           <div className="sponsors-inner">
             <div className="sponsors-banner-row">
-              <h1 className="sponsors-banner-title">Our Sponsors</h1>
+              <h1 className="sponsors-banner-title">{t.bannerTitle}</h1>
 
               <button
                 className="sponsors-breadcrumb"
@@ -320,7 +379,7 @@ export default function Sponsors() {
                 type="button"
               >
                 <ChevronLeft size={18} />
-                <span>Get Involved</span>
+                <span>{t.breadcrumb}</span>
               </button>
 
               <div className="sponsors-banner-line" />
@@ -332,22 +391,17 @@ export default function Sponsors() {
       <section className="sponsors-content">
         <div className="sponsors-shell">
           <div className="sponsors-inner">
-            <div className="intro-card">
-              <div className="intro-image-wrap">
-                <img className="intro-image" src={heroImg} alt="Club Ability sponsor programs" />
-              </div>
+            <div className="cta-box">
+              <h2>{t.ctaTitle}</h2>
+              <p>{t.ctaText}</p>
 
-              <div className="intro-copy">
-                <h2>To Our Sponsors</h2>
-                <p>
-                  We are deeply grateful to our sponsors for investing in the mission of Club
-                  Ability. Your generous support makes it possible for us to provide high-quality,
-                  affordable STEM and technology education to students who need it most. Because of
-                  your commitment, children across Utah are gaining the skills and confidence to
-                  pursue futures they once only dreamed of. Thank you for believing in our students
-                  — your partnership and generosity make all the difference.
-                </p>
-              </div>
+              <button
+                className="sponsor-btn"
+                type="button"
+                onClick={() => navigate("/contact")}
+              >
+                {t.ctaButton}
+              </button>
             </div>
 
             <div className="logos-section">
@@ -368,23 +422,15 @@ export default function Sponsors() {
               </div>
             </div>
 
-            <div className="cta-box">
-              <h2>Interested in becoming a sponsor?</h2>
-              <p>
-                Becoming a Club Ability sponsor helps support affordable, high-quality STEM
-                education for underserved students across Utah. Your partnership expands our
-                programs while giving your organization visibility among families, educators, and
-                community leaders. Join us in helping every child gain the opportunity to learn and
-                succeed in a technology-driven world.
-              </p>
+            <div className="intro-card bottom-intro-card">
+              <div className="intro-image-wrap">
+                <img className="intro-image" src={heroImg} alt={t.heroAlt} />
+              </div>
 
-              <button
-                className="sponsor-btn"
-                type="button"
-                onClick={() => navigate("/contact")}
-              >
-                Become a Sponsor
-              </button>
+              <div className="intro-copy">
+                <h2>{t.bottomTitle}</h2>
+                <p>{t.bottomText}</p>
+              </div>
             </div>
           </div>
         </div>

@@ -8,6 +8,7 @@ import {
   Accessibility,
   SquareCheckBig,
 } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 import heroImg from "../assets/clubability/home/heroimg.png";
 
@@ -25,26 +26,188 @@ import whyFamiliesImpact from "../assets/clubability/home/why-families-impact.sv
 
 export default function Home() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+
+  const copy = {
+    en: {
+      heroTitle: "Hands-On Technology Programs for Kids & Teens",
+      heroText:
+        "Learn coding, design, and real-world tech skills in a fun and supportive environment.",
+      heroNote: "Trusted by 3,000+ students and families.",
+      viewPrograms: "View Programs",
+      getInvolved: "Get Involved",
+      whySectionTitle: "Why Families Choose Club Ability",
+      whyCards: [
+        {
+          title: "Hands-On Learning",
+          text: "Students build real tech projects using coding, design, and AI tools.",
+          stat: "3000+ Experiences",
+        },
+        {
+          title: "Accessible Opportunities",
+          text: "Scholarships and affordable programs make technology education available to all families.",
+          stat: "Over 150 Donated Devices",
+        },
+        {
+          title: "Proven Impact",
+          text: "Serving thousands of students and helping families build real-world technology skills.",
+          stat: "98% Satisfaction",
+        },
+      ],
+      programsSectionTitle: "Our Programs",
+      programCards: [
+        {
+          title: "Programming",
+          text: "Explore coding, game design, and creative technology.",
+        },
+        {
+          title: "Marketing",
+          text: "Learn branding, design, and digital communication skills.",
+        },
+        {
+          title: "Artificial Intelligence",
+          text: "Discover how AI works and create intelligent projects.",
+        },
+      ],
+      learnMore: "Learn More",
+      viewAllPrograms: "View All Programs",
+      storiesSectionTitle: "Student Success Stories",
+      storyCards: [
+        {
+          name: "Maria R.",
+          text: '"My son learned coding and now wants to be a software engineer."',
+        },
+        {
+          name: "James T.",
+          text: '"The teachers are amazing and make technology fun and engaging."',
+        },
+        {
+          name: "Olivia G.",
+          text: '"My daughter gained confidence and real tech skills."',
+        },
+      ],
+      readFullStory: "Read Full Story",
+      viewMoreStories: "View More Stories",
+      getInvolvedSectionTitle: "Get Involved",
+      getInvolvedCards: [
+        {
+          title: "Donors",
+          text: "Support students and help expand access to technology education.",
+          cta: "Donate",
+        },
+        {
+          title: "Volunteer",
+          text: "Share your knowledge and mentor students interested in technology.",
+          cta: "Volunteer",
+        },
+        {
+          title: "Become a Sponsor",
+          text: "Partner with Club Ability to support STEM education programs.",
+          cta: "Sponsor",
+        },
+      ],
+    },
+    es: {
+      heroTitle: "Programas prácticos de tecnología para niños y adolescentes",
+      heroText:
+        "Aprende programación, diseño y habilidades tecnológicas del mundo real en un ambiente divertido y de apoyo.",
+      heroNote: "Con la confianza de más de 3,000 estudiantes y familias.",
+      viewPrograms: "Ver Programas",
+      getInvolved: "Participa",
+      whySectionTitle: "Por qué las familias eligen Club Ability",
+      whyCards: [
+        {
+          title: "Aprendizaje Práctico",
+          text: "Los estudiantes crean proyectos reales de tecnología usando programación, diseño e IA.",
+          stat: "3000+ Experiencias",
+        },
+        {
+          title: "Oportunidades Accesibles",
+          text: "Las becas y los programas asequibles hacen que la educación tecnológica esté disponible para todas las familias.",
+          stat: "Más de 150 dispositivos donados",
+        },
+        {
+          title: "Impacto Comprobado",
+          text: "Atendemos a miles de estudiantes y ayudamos a las familias a desarrollar habilidades tecnológicas del mundo real.",
+          stat: "98% de satisfacción",
+        },
+      ],
+      programsSectionTitle: "Nuestros Programas",
+      programCards: [
+        {
+          title: "Programación",
+          text: "Explora programación, diseño de videojuegos y tecnología creativa.",
+        },
+        {
+          title: "Marketing",
+          text: "Aprende branding, diseño y habilidades de comunicación digital.",
+        },
+        {
+          title: "Inteligencia Artificial",
+          text: "Descubre cómo funciona la IA y crea proyectos inteligentes.",
+        },
+      ],
+      learnMore: "Más Información",
+      viewAllPrograms: "Ver Todos los Programas",
+      storiesSectionTitle: "Historias de Éxito Estudiantil",
+      storyCards: [
+        {
+          name: "Maria R.",
+          text: '"Mi hijo aprendió programación y ahora quiere ser ingeniero de software."',
+        },
+        {
+          name: "James T.",
+          text: '"Los maestros son increíbles y hacen que la tecnología sea divertida y atractiva."',
+        },
+        {
+          name: "Olivia G.",
+          text: '"Mi hija ganó confianza y habilidades tecnológicas reales."',
+        },
+      ],
+      readFullStory: "Leer Historia Completa",
+      viewMoreStories: "Ver Más Historias",
+      getInvolvedSectionTitle: "Participa",
+      getInvolvedCards: [
+        {
+          title: "Donantes",
+          text: "Apoya a los estudiantes y ayuda a ampliar el acceso a la educación tecnológica.",
+          cta: "Donar",
+        },
+        {
+          title: "Voluntariado",
+          text: "Comparte tu conocimiento y guía a estudiantes interesados en la tecnología.",
+          cta: "Voluntariado",
+        },
+        {
+          title: "Conviértete en Patrocinador",
+          text: "Asóciate con Club Ability para apoyar programas de educación STEM.",
+          cta: "Patrocinar",
+        },
+      ],
+    },
+  } as const;
+
+  const t = copy[language];
 
   const whyCards = [
     {
-      title: "Hands-On Learning",
-      text: "Students build real tech projects using coding, design, and AI tools.",
-      stat: "3000+ Experiences",
+      title: t.whyCards[0].title,
+      text: t.whyCards[0].text,
+      stat: t.whyCards[0].stat,
       bg: whyFamiliesHandsOn,
       icon: <Keyboard size={20} color="#062430" strokeWidth={2.2} />,
     },
     {
-      title: "Accessible Opportunities",
-      text: "Scholarships and affordable programs make technology education available to all families.",
-      stat: "Over 150 Donated Devices",
+      title: t.whyCards[1].title,
+      text: t.whyCards[1].text,
+      stat: t.whyCards[1].stat,
       bg: whyFamiliesAccessible,
       icon: <Accessibility size={20} color="#062430" strokeWidth={2.2} />,
     },
     {
-      title: "Proven Impact",
-      text: "Serving thousands of students and helping families build real-world technology skills.",
-      stat: "98% Satisfaction",
+      title: t.whyCards[2].title,
+      text: t.whyCards[2].text,
+      stat: t.whyCards[2].stat,
       bg: whyFamiliesImpact,
       icon: <SquareCheckBig size={20} color="#062430" strokeWidth={2.2} />,
     },
@@ -52,38 +215,38 @@ export default function Home() {
 
   const programCards = [
     {
-      title: "Programming",
-      text: "Explore coding, game design, and creative technology.",
+      title: t.programCards[0].title,
+      text: t.programCards[0].text,
       img: programmingImg,
     },
     {
-      title: "Marketing",
-      text: "Learn branding, design, and digital communication skills.",
+      title: t.programCards[1].title,
+      text: t.programCards[1].text,
       img: marketingImg,
     },
     {
-      title: "Artificial Intelligence",
-      text: "Discover how AI works and create intelligent projects.",
+      title: t.programCards[2].title,
+      text: t.programCards[2].text,
       img: artificialIntelligenceImg,
     },
   ];
 
   const storyCards = [
     {
-      name: "Maria R.",
-      text: '"My son learned coding and now wants to be a software engineer."',
+      name: t.storyCards[0].name,
+      text: t.storyCards[0].text,
       avatar: avatarMaria,
       bg: "#f6dce7",
     },
     {
-      name: "James T.",
-      text: '"The teachers are amazing and make technology fun and engaging."',
+      name: t.storyCards[1].name,
+      text: t.storyCards[1].text,
       avatar: avatarJames,
       bg: "#dceff5",
     },
     {
-      name: "Olivia G.",
-      text: '"My daughter gained confidence and real tech skills."',
+      name: t.storyCards[2].name,
+      text: t.storyCards[2].text,
       avatar: avatarOlivia,
       bg: "#eef7fa",
     },
@@ -91,25 +254,25 @@ export default function Home() {
 
   const getInvolvedCards = [
     {
-      title: "Donors",
-      text: "Support students and help expand access to technology education.",
-      cta: "Donate",
+      title: t.getInvolvedCards[0].title,
+      text: t.getInvolvedCards[0].text,
+      cta: t.getInvolvedCards[0].cta,
       bg: "#0c495d",
       icon: <Heart size={30} color="white" strokeWidth={2.2} />,
       onClick: () => navigate("/donate"),
     },
     {
-      title: "Volunteer",
-      text: "Share your knowledge and mentor students interested in technology.",
-      cta: "Volunteer",
+      title: t.getInvolvedCards[1].title,
+      text: t.getInvolvedCards[1].text,
+      cta: t.getInvolvedCards[1].cta,
       bg: "#062c3a",
       icon: <Hand size={30} color="white" strokeWidth={2.2} />,
       onClick: () => navigate("/volunteer"),
     },
     {
-      title: "Become a Sponsor",
-      text: "Partner with Club Ability to support STEM education programs.",
-      cta: "Sponsor",
+      title: t.getInvolvedCards[2].title,
+      text: t.getInvolvedCards[2].text,
+      cta: t.getInvolvedCards[2].cta,
       bg: "#0c495d",
       icon: <UserRound size={30} color="white" strokeWidth={2.2} />,
       onClick: () => navigate("/sponsors"),
@@ -140,8 +303,8 @@ export default function Home() {
             margin: 0 0 28px 0;
             text-align: center;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
           }
@@ -191,8 +354,8 @@ export default function Home() {
           .hero-copy h1 {
             margin: 0 0 28px 0;
             font-family: Poppins, sans-serif;
-            font-size: 57px;
-            line-height: 57px;
+            font-size: 40px;
+            line-height: 40px;
             font-weight: 700;
             color: white;
             text-align: left;
@@ -241,6 +404,12 @@ export default function Home() {
           }
 
           .btn-light {
+            background: #c23368;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+          }
+
+          .hero-secondary-btn {
             background: #e0f5fc;
             color: #062430;
             box-shadow: 0 4px 10px rgba(0,0,0,0.16);
@@ -613,8 +782,8 @@ export default function Home() {
             }
 
             .hero-copy h1 {
-              font-size: 40px;
-              line-height: 1.05;
+              font-size: 32px;
+              line-height: 36px;
             }
 
             .hero-copy p {
@@ -634,8 +803,8 @@ export default function Home() {
             }
 
             .home-title {
-              font-size: 28px;
-              line-height: 1.1;
+              font-size: 26px;
+              line-height: 30px;
             }
           }
         `}
@@ -643,27 +812,28 @@ export default function Home() {
 
       <section className="hero-section">
         <div className="hero-bg">
-          <img src={heroImg} alt="Students learning technology" />
+          <img src={heroImg} alt={language === "en" ? "Students learning technology" : "Estudiantes aprendiendo tecnología"} />
           <div className="hero-overlay" />
         </div>
 
         <div className="home-shell hero-content">
           <div className="hero-copy">
-            <h1>Hands-On Technology Programs for Kids &amp; Teens</h1>
-            <p>
-              Learn coding, design, and real-world tech skills in a fun and supportive environment.
-            </p>
+            <h1>{t.heroTitle}</h1>
+            <p>{t.heroText}</p>
 
             <div className="hero-actions">
               <button className="btn-primary" onClick={() => navigate("/programs")}>
-                View Programs
+                {t.viewPrograms}
               </button>
 
-              <button className="btn-light" onClick={() => navigate("/get-involved")}>
-                Get Involved
+              <button
+                className="btn-light hero-secondary-btn"
+                onClick={() => navigate("/get-involved")}
+              >
+                {t.getInvolved}
               </button>
 
-              <p className="hero-note">Trusted by 3,000+ students and families.</p>
+              <p className="hero-note">{t.heroNote}</p>
             </div>
           </div>
         </div>
@@ -671,7 +841,7 @@ export default function Home() {
 
       <section className="content-section">
         <div className="home-shell">
-          <h2 className="home-title">Why Families Choose Club Ability</h2>
+          <h2 className="home-title">{t.whySectionTitle}</h2>
           <div className="home-inner group-wrap why-wrap">
             <div className="equal-grid">
               {whyCards.map((card) => (
@@ -696,7 +866,7 @@ export default function Home() {
 
       <section className="content-section">
         <div className="home-shell">
-          <h2 className="home-title">Our Programs</h2>
+          <h2 className="home-title">{t.programsSectionTitle}</h2>
           <div className="home-inner group-wrap program-wrap">
             <div className="equal-grid">
               {programCards.map((program) => (
@@ -712,7 +882,7 @@ export default function Home() {
                     <div>
                       <p className="program-text">{program.text}</p>
                       <div className="program-link">
-                        <span>Learn More</span>
+                        <span>{t.learnMore}</span>
                         <ArrowRight size={14} />
                       </div>
                     </div>
@@ -724,7 +894,7 @@ export default function Home() {
 
           <div className="section-cta">
             <button className="btn-primary" onClick={() => navigate("/programs")}>
-              View All Programs
+              {t.viewAllPrograms}
             </button>
           </div>
         </div>
@@ -732,7 +902,7 @@ export default function Home() {
 
       <section className="content-section">
         <div className="home-shell">
-          <h2 className="home-title">Student Success Stories</h2>
+          <h2 className="home-title">{t.storiesSectionTitle}</h2>
           <div className="home-inner group-wrap stories-wrap">
             <div className="equal-grid">
               {storyCards.map((story) => (
@@ -748,7 +918,7 @@ export default function Home() {
                   <div>
                     <div className="story-stars">★★★★★</div>
                     <button className="story-link" onClick={() => navigate("/stories")}>
-                      <span>Read Full Story</span>
+                      <span>{t.readFullStory}</span>
                       <ArrowRight size={14} />
                     </button>
                   </div>
@@ -759,7 +929,7 @@ export default function Home() {
 
           <div className="section-cta">
             <button className="btn-light" onClick={() => navigate("/stories")}>
-              View More Stories
+              {t.viewMoreStories}
             </button>
           </div>
         </div>
@@ -768,7 +938,7 @@ export default function Home() {
       <section className="content-section" style={{ paddingBottom: "72px" }}>
         <div className="home-shell">
           <h2 className="home-title" style={{ color: "#111111" }}>
-            Get Involved
+            {t.getInvolvedSectionTitle}
           </h2>
 
           <div className="home-inner group-wrap involved-wrap">
@@ -799,7 +969,7 @@ export default function Home() {
 
           <div className="section-cta">
             <button className="btn-light" onClick={() => navigate("/get-involved")}>
-              Get Involved
+              {t.getInvolved}
             </button>
           </div>
         </div>

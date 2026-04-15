@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "../../context/LanguageContext";
 
 import logoImg from "../../assets/clubability/shared/Clubability Logo.svg";
 import accountIcon from "../../assets/clubability/shared/account_circle.svg";
@@ -11,6 +12,30 @@ type HeaderProps = {
 
 export default function Header({ onLoginClick }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, toggleLanguage } = useLanguage();
+
+  const copy = {
+    en: {
+      programs: "Programs",
+      about: "About",
+      getInvolved: "Get Involved",
+      account: "Account",
+      langShort: "EN",
+      langSwitch: "ES",
+      langLabel: "Switch language",
+    },
+    es: {
+      programs: "Programas",
+      about: "Sobre Nosotros",
+      getInvolved: "Participa",
+      account: "Cuenta",
+      langShort: "ES",
+      langSwitch: "EN",
+      langLabel: "Cambiar idioma",
+    },
+  };
+
+  const t = copy[language];
 
   return (
     <header className="site-header">
@@ -26,20 +51,31 @@ export default function Header({ onLoginClick }: HeaderProps) {
 
           <nav className="site-header-nav desktop-nav">
             <Link to="/programs" className="site-header-nav-link">
-              Programs
+              {t.programs}
             </Link>
 
             <Link to="/about" className="site-header-nav-link">
-              About
+              {t.about}
             </Link>
 
             <Link to="/get-involved" className="site-header-nav-link">
-              Get Involved
+              {t.getInvolved}
             </Link>
 
             <button
               type="button"
-              aria-label="Account"
+              onClick={toggleLanguage}
+              aria-label={t.langLabel}
+              className="site-header-language-btn"
+            >
+              <span className="site-header-language-current">{t.langShort}</span>
+              <span className="site-header-language-divider">/</span>
+              <span className="site-header-language-next">{t.langSwitch}</span>
+            </button>
+
+            <button
+              type="button"
+              aria-label={t.account}
               onClick={onLoginClick}
               className="site-header-account-btn"
             >
@@ -68,7 +104,7 @@ export default function Header({ onLoginClick }: HeaderProps) {
               onClick={() => setMobileMenuOpen(false)}
               className="site-header-mobile-link"
             >
-              Programs
+              {t.programs}
             </Link>
 
             <Link
@@ -76,7 +112,7 @@ export default function Header({ onLoginClick }: HeaderProps) {
               onClick={() => setMobileMenuOpen(false)}
               className="site-header-mobile-link"
             >
-              About
+              {t.about}
             </Link>
 
             <Link
@@ -84,8 +120,18 @@ export default function Header({ onLoginClick }: HeaderProps) {
               onClick={() => setMobileMenuOpen(false)}
               className="site-header-mobile-link"
             >
-              Get Involved
+              {t.getInvolved}
             </Link>
+
+            <button
+              type="button"
+              onClick={() => {
+                toggleLanguage();
+              }}
+              className="site-header-mobile-link site-header-mobile-button"
+            >
+              {t.langShort} / {t.langSwitch}
+            </button>
 
             <button
               type="button"
@@ -95,7 +141,7 @@ export default function Header({ onLoginClick }: HeaderProps) {
               }}
               className="site-header-mobile-link site-header-mobile-button"
             >
-              Account
+              {t.account}
             </button>
           </nav>
         )}
@@ -142,7 +188,7 @@ export default function Header({ onLoginClick }: HeaderProps) {
           .site-header-nav {
             display: flex;
             align-items: center;
-            gap: 48px;
+            gap: 36px;
           }
 
           .site-header-nav-link {
@@ -158,6 +204,41 @@ export default function Header({ onLoginClick }: HeaderProps) {
           .site-header-nav-link:hover,
           .site-header-mobile-link:hover {
             opacity: 0.86;
+          }
+
+          .site-header-language-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.34);
+            border-radius: 999px;
+            padding: 8px 12px;
+            color: #ffffff;
+            font-family: Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1;
+            font-weight: 500;
+            cursor: pointer;
+            transition:
+              transform 0.18s ease,
+              opacity 0.18s ease,
+              border-color 0.18s ease;
+          }
+
+          .site-header-language-btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.92;
+            border-color: rgba(255, 255, 255, 0.55);
+          }
+
+          .site-header-language-current {
+            color: #ffffff;
+          }
+
+          .site-header-language-divider,
+          .site-header-language-next {
+            color: rgba(255, 255, 255, 0.75);
           }
 
           .site-header-account-btn {

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 import img1 from "../assets/clubability/awards/img1.svg";
 import img2 from "../assets/clubability/awards/img2.svg";
@@ -14,14 +15,50 @@ type AwardCard = {
 
 export default function Awards() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+
+  const copy = {
+    en: {
+      bannerTitle: "Awards and Recognition",
+      introTitle: "Work with us!",
+      introText: "Become a sponsor of Club Ability",
+      sponsorBtn: "Become a Sponsor",
+      learnMore: "LEARN MORE →",
+      awards: [
+        "Governor’s Medal for Science and Technology",
+        "Action Awards",
+        "HCT Applauds",
+        "Women’s Tech Awards",
+        "We Are Utah Award",
+        "Utah Living Color Awards",
+      ],
+    },
+    es: {
+      bannerTitle: "Premios y Reconocimientos",
+      introTitle: "¡Trabaja con nosotros!",
+      introText: "Conviértete en patrocinador de Club Ability",
+      sponsorBtn: "Conviértete en Patrocinador",
+      learnMore: "MÁS INFORMACIÓN →",
+      awards: [
+        "Medalla del Gobernador de Ciencia y Tecnología",
+        "Premios Action",
+        "HCT Applauds",
+        "Premios Women’s Tech",
+        "Premio We Are Utah",
+        "Premios Utah Living Color",
+      ],
+    },
+  } as const;
+
+  const t = copy[language];
 
   const awards: AwardCard[] = [
-    { title: "Governor’s Medal for Science and Technology", image: img1 },
-    { title: "Action Awards", image: img2 },
-    { title: "HCT Applauds", image: img3 },
-    { title: "Women’s Tech Awards", image: img4 },
-    { title: "We Are Utah Award", image: img5 },
-    { title: "Utah Living Color Awards", image: img6 },
+    { title: t.awards[0], image: img1 },
+    { title: t.awards[1], image: img2 },
+    { title: t.awards[2], image: img3 },
+    { title: t.awards[3], image: img4 },
+    { title: t.awards[4], image: img5 },
+    { title: t.awards[5], image: img6 },
   ];
 
   return (
@@ -47,22 +84,22 @@ export default function Awards() {
 
           .awards-banner {
             background: #0c3a4a;
-            padding: 28px 0 30px;
+            padding: 22px 0 24px;
           }
 
           .awards-banner-row {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
           }
 
           .awards-banner h1 {
             margin: 0;
             color: white;
             font-family: Poppins, sans-serif;
-            font-size: 57px;
-            line-height: 57px;
-            font-weight: 700;
+            font-size: 40px;
+            line-height: 40px;
+            font-weight: 600;
             white-space: nowrap;
           }
 
@@ -71,7 +108,7 @@ export default function Awards() {
             background: #e8206a;
             flex: 1;
             border-radius: 999px;
-            margin-top: 10px;
+            margin-top: 4px;
           }
 
           .awards-content {
@@ -85,8 +122,8 @@ export default function Awards() {
           .awards-intro h2 {
             margin: 0 0 8px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -228,14 +265,14 @@ export default function Awards() {
             }
 
             .awards-banner h1 {
-              font-size: 42px;
-              line-height: 1.05;
+              font-size: 32px;
+              line-height: 36px;
               white-space: normal;
             }
 
             .awards-intro h2 {
-              font-size: 28px;
-              line-height: 1.1;
+              font-size: 26px;
+              line-height: 30px;
             }
 
             .awards-intro p {
@@ -267,7 +304,7 @@ export default function Awards() {
         <div className="awards-shell">
           <div className="awards-inner">
             <div className="awards-banner-row">
-              <h1>Awards and Recognition</h1>
+              <h1>{t.bannerTitle}</h1>
               <div className="awards-banner-line" />
             </div>
           </div>
@@ -278,14 +315,14 @@ export default function Awards() {
         <div className="awards-shell">
           <div className="awards-inner">
             <div className="awards-intro">
-              <h2>Work with us!</h2>
-              <p>Become a sponsor of Club Ability</p>
+              <h2>{t.introTitle}</h2>
+              <p>{t.introText}</p>
               <button
                 className="sponsor-btn"
                 type="button"
                 onClick={() => navigate("/sponsors")}
               >
-                Become a Sponsor
+                {t.sponsorBtn}
               </button>
             </div>
 
@@ -306,7 +343,7 @@ export default function Awards() {
                           type="button"
                           onClick={() => navigate("/sponsors")}
                         >
-                          LEARN MORE →
+                          {t.learnMore}
                         </button>
                       </div>
                     </div>

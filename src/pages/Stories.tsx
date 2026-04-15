@@ -1,55 +1,100 @@
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 import anabellaImg from "../assets/clubability/stories/anabella.svg";
 import jancarlosImg from "../assets/clubability/stories/juancarlos.svg";
 import madelayneImg from "../assets/clubability/stories/madelayne.svg";
 import ricardoImg from "../assets/clubability/stories/ricardo.svg";
 
-type StoryItem = {
-  name: string;
-  image: string;
-  text: string;
-  band: "blue" | "pink" | "white";
-  layout: "image-left" | "image-right";
-};
-
 export default function Stories() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
 
-  const stories: StoryItem[] = [
-    {
-      name: "Anabella",
-      image: anabellaImg,
-      band: "blue",
-      layout: "image-left",
-      text:
-        "Anabella won the 2025 Utah Science Fair thanks to her talent and commitment to the environment. She presented two innovative projects made entirely from recycled materials: a fire truck that detects and puts out fires automatically, and a self-driving car that collects trash. Her creativity and problem-solving mindset stood out among the participants. Without a doubt, she is a rising star in science and sustainability.",
+  const copy = {
+    en: {
+      bannerTitle: "Student Success Stories",
+      introTitle: "Sign up for Courses today!",
+      introText: "Be one of our future success stories",
+      enrollNow: "Enroll Now",
+      stories: [
+        {
+          name: "Anabella",
+          image: anabellaImg,
+          band: "blue" as const,
+          layout: "image-left" as const,
+          text:
+            "Anabella won the 2025 Utah Science Fair thanks to her talent and commitment to the environment. She presented two innovative projects made entirely from recycled materials: a fire truck that detects and puts out fires automatically, and a self-driving car that collects trash. Her creativity and problem-solving mindset stood out among the participants. Without a doubt, she is a rising star in science and sustainability.",
+        },
+        {
+          name: "Madelayne",
+          image: madelayneImg,
+          band: "pink" as const,
+          layout: "image-right" as const,
+          text:
+            "Madelayne is a 12-year-old Tech Creator, bilingual, and full of initiative when it comes to proposing ideas. She stands out for actively participating in classes.\n\nShe has been a student at Club Ability since 2022, where she discovered her passion for programming, with Minecraft Education being her favorite subject. Additionally, she has served as a volunteer in various Club Ability activities.",
+        },
+        {
+          name: "Jancarlos",
+          image: jancarlosImg,
+          band: "blue" as const,
+          layout: "image-left" as const,
+          text:
+            "Jancarlos is a 14-year-old tech creator born in Utah, the son of Hispanic parents, and bilingual. Despite his young age, he has shown the courage to seize the opportunities that have come his way. Committed and passionate about science and technology, he has been a student at Club Ability since 2020, where he discovered his love for 3D Design. In recognition of his dedication, we awarded his talent with a monitor, a laptop, and a tablet.",
+        },
+        {
+          name: "Ricardo",
+          image: ricardoImg,
+          band: "white" as const,
+          layout: "image-right" as const,
+          text:
+            "Ricardo's vision deteriorated due to his work, leading to the loss of one eye and eventually the other. The darkness surrounding him seemed to strip away not just his sight but also his hope.\n\nThanks to Club Ability, Ricardo found a new opportunity to start again. Here, he learned to use technology, regained his independence, and, motivated by his achievements, decided to keep growing: he enrolled in a Braille course and began English classes.",
+        },
+      ],
     },
-    {
-      name: "Madelayne",
-      image: madelayneImg,
-      band: "pink",
-      layout: "image-right",
-      text:
-        "Madelayne is a 12-year-old Tech Creator, bilingual, and full of initiative when it comes to proposing ideas. She stands out for actively participating in classes.\n\nShe has been a student at Club Ability since 2022, where she discovered her passion for programming, with Minecraft Education being her favorite subject. Additionally, she has served as a volunteer in various Club Ability activities.",
+    es: {
+      bannerTitle: "Historias de Éxito Estudiantil",
+      introTitle: "¡Inscríbete en cursos hoy!",
+      introText: "Sé una de nuestras futuras historias de éxito",
+      enrollNow: "Inscríbete Ahora",
+      stories: [
+        {
+          name: "Anabella",
+          image: anabellaImg,
+          band: "blue" as const,
+          layout: "image-left" as const,
+          text:
+            "Anabella ganó la Feria de Ciencias de Utah 2025 gracias a su talento y compromiso con el medio ambiente. Presentó dos proyectos innovadores hechos completamente con materiales reciclados: un camión de bomberos que detecta y apaga incendios automáticamente, y un automóvil autónomo que recoge basura. Su creatividad y mentalidad para resolver problemas destacaron entre los participantes. Sin duda, es una estrella en ascenso en la ciencia y la sostenibilidad.",
+        },
+        {
+          name: "Madelayne",
+          image: madelayneImg,
+          band: "pink" as const,
+          layout: "image-right" as const,
+          text:
+            "Madelayne es una Tech Creator de 12 años, bilingüe y llena de iniciativa al momento de proponer ideas. Destaca por participar activamente en clases.\n\nHa sido estudiante de Club Ability desde 2022, donde descubrió su pasión por la programación, siendo Minecraft Education su materia favorita. Además, ha servido como voluntaria en diversas actividades de Club Ability.",
+        },
+        {
+          name: "Jancarlos",
+          image: jancarlosImg,
+          band: "blue" as const,
+          layout: "image-left" as const,
+          text:
+            "Jancarlos es un creador tecnológico de 14 años nacido en Utah, hijo de padres hispanos y bilingüe. A pesar de su corta edad, ha demostrado valentía para aprovechar las oportunidades que se le han presentado. Comprometido y apasionado por la ciencia y la tecnología, ha sido estudiante de Club Ability desde 2020, donde descubrió su amor por el Diseño 3D. En reconocimiento a su dedicación, premiamos su talento con un monitor, una laptop y una tableta.",
+        },
+        {
+          name: "Ricardo",
+          image: ricardoImg,
+          band: "white" as const,
+          layout: "image-right" as const,
+          text:
+            "La visión de Ricardo se deterioró debido a su trabajo, lo que provocó la pérdida de un ojo y, finalmente, del otro. La oscuridad que lo rodeaba parecía arrebatarle no solo la vista, sino también la esperanza.\n\nGracias a Club Ability, Ricardo encontró una nueva oportunidad para comenzar de nuevo. Aquí aprendió a usar la tecnología, recuperó su independencia y, motivado por sus logros, decidió seguir creciendo: se inscribió en un curso de Braille y comenzó clases de inglés.",
+        },
+      ],
     },
-    {
-      name: "Jancarlos",
-      image: jancarlosImg,
-      band: "blue",
-      layout: "image-left",
-      text:
-        "Jancarlos is a 14-year-old tech creator born in Utah, the son of Hispanic parents, and bilingual. Despite his young age, he has shown the courage to seize the opportunities that have come his way. Committed and passionate about science and technology, he has been a student at Club Ability since 2020, where he discovered his love for 3D Design. In recognition of his dedication, we awarded his talent with a monitor, a laptop, and a tablet.",
-    },
-    {
-      name: "Ricardo",
-      image: ricardoImg,
-      band: "white",
-      layout: "image-right",
-      text:
-        "Ricardo's vision deteriorated due to his work, leading to the loss of one eye and eventually the other. The darkness surrounding him seemed to strip away not just his sight but also his hope.\n\nThanks to Club Ability, Ricardo found a new opportunity to start again. Here, he learned to use technology, regained his independence, and, motivated by his achievements, decided to keep growing: he enrolled in a Braille course and began English classes.",
-    },
-  ];
+  } as const;
+
+  const t = copy[language];
+  const stories = t.stories;
 
   return (
     <div className="stories-page">
@@ -74,22 +119,22 @@ export default function Stories() {
 
           .stories-banner {
             background: #0c3a4a;
-            padding: 28px 0 30px;
+            padding: 22px 0 24px;
           }
 
           .stories-banner-row {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
           }
 
           .stories-banner h1 {
             margin: 0;
             color: white;
             font-family: Poppins, sans-serif;
-            font-size: 57px;
-            line-height: 57px;
-            font-weight: 700;
+            font-size: 40px;
+            line-height: 40px;
+            font-weight: 600;
             white-space: nowrap;
           }
 
@@ -98,7 +143,7 @@ export default function Stories() {
             background: #e8206a;
             flex: 1;
             border-radius: 999px;
-            margin-top: 10px;
+            margin-top: 4px;
           }
 
           .stories-content {
@@ -112,8 +157,8 @@ export default function Stories() {
           .stories-intro h2 {
             margin: 0 0 8px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -230,8 +275,8 @@ export default function Stories() {
           .story-name {
             margin: 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: center;
@@ -266,14 +311,14 @@ export default function Stories() {
             }
 
             .stories-banner h1 {
-              font-size: 42px;
-              line-height: 1.05;
+              font-size: 32px;
+              line-height: 36px;
               white-space: normal;
             }
 
             .stories-intro h2 {
-              font-size: 28px;
-              line-height: 1.1;
+              font-size: 26px;
+              line-height: 30px;
             }
 
             .stories-intro p {
@@ -298,8 +343,8 @@ export default function Stories() {
             }
 
             .story-name {
-              font-size: 28px;
-              line-height: 1.1;
+              font-size: 26px;
+              line-height: 30px;
             }
           }
         `}
@@ -309,7 +354,7 @@ export default function Stories() {
         <div className="stories-shell">
           <div className="stories-inner">
             <div className="stories-banner-row">
-              <h1>Student Success Stories</h1>
+              <h1>{t.bannerTitle}</h1>
               <div className="stories-banner-line" />
             </div>
           </div>
@@ -320,14 +365,14 @@ export default function Stories() {
         <div className="stories-shell">
           <div className="stories-inner">
             <div className="stories-intro">
-              <h2>Sign up for Courses today!</h2>
-              <p>Be one of our future success stories</p>
+              <h2>{t.introTitle}</h2>
+              <p>{t.introText}</p>
               <button
                 className="enroll-btn"
                 type="button"
                 onClick={() => navigate("/programs")}
               >
-                Enroll Now
+                {t.enrollNow}
               </button>
             </div>
 

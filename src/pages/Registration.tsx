@@ -1,15 +1,121 @@
 import { ChevronLeft, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 import summaryImg from "../assets/clubability/registration/Rectangle 9.svg";
 import appleIcon from "../assets/clubability/shared/apple.svg";
 import googleIcon from "../assets/clubability/shared/google.svg";
 
 export default function Registration() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+
+  const copy = {
+    en: {
+      bannerTitle: "Registration",
+      breadcrumbProgram: "Computing",
+      breadcrumbPrograms: "Programs",
+      yourInfo: "Your info",
+      payment: "Payment",
+      billingAddress: "Billing address",
+      registrationSummary: "Registration summary",
+      firstName: "First name",
+      lastName: "Last name",
+      emailAddress: "Email address",
+      phoneNumber: "Phone number",
+      registeringForSomeoneElse: "I am registering someone else",
+      registeringForSomeoneElseAria: "I am registering someone else",
+      cardNumber: "Card number",
+      expirationDate: "Expiration date",
+      securityCode: "Security code",
+      nameOnCard: "Name on card",
+      countryRegion: "Country/region",
+      address: "Address",
+      apartment: "Apartment, suite, etc.",
+      zipCode: "ZIP code",
+      summaryAlt: "Computing class",
+      program: "Program",
+      date: "Date",
+      classes: "Classes",
+      total: "Total",
+      register: "Register",
+      applePay: "Apple Pay",
+      googlePay: "Google Pay",
+      helpText: "Need any help with registration? We’re happy to assist.",
+      firstNameDefault: "Jane",
+      lastNameDefault: "Smith",
+      emailDefault: "example@email.com",
+      phoneDefault: "(801) 555-1234",
+      cardNumberDefault: "0000 0000 0000 0000",
+      expirationDefault: "MM / YY",
+      securityDefault: "000",
+      cardNameDefault: "Jane Smith",
+      countryDefault: "United States",
+      addressDefault: "123 Main Street",
+      apartmentDefault: "(optional)",
+      zipDefault: "00000",
+      summaryProgram: "Computing",
+      summaryDate: "Mar 7, 2026",
+      summaryClasses: "1 Class",
+      summaryTotal: "$90",
+    },
+    es: {
+      bannerTitle: "Registro",
+      breadcrumbProgram: "Computación",
+      breadcrumbPrograms: "Programas",
+      yourInfo: "Tu información",
+      payment: "Pago",
+      billingAddress: "Dirección de facturación",
+      registrationSummary: "Resumen de registro",
+      firstName: "Nombre",
+      lastName: "Apellido",
+      emailAddress: "Correo electrónico",
+      phoneNumber: "Número de teléfono",
+      registeringForSomeoneElse: "Estoy registrando a otra persona",
+      registeringForSomeoneElseAria: "Estoy registrando a otra persona",
+      cardNumber: "Número de tarjeta",
+      expirationDate: "Fecha de vencimiento",
+      securityCode: "Código de seguridad",
+      nameOnCard: "Nombre en la tarjeta",
+      countryRegion: "País/región",
+      address: "Dirección",
+      apartment: "Apartamento, suite, etc.",
+      zipCode: "Código postal",
+      summaryAlt: "Clase de computación",
+      program: "Programa",
+      date: "Fecha",
+      classes: "Clases",
+      total: "Total",
+      register: "Registrar",
+      applePay: "Apple Pay",
+      googlePay: "Google Pay",
+      helpText: "¿Necesitas ayuda con el registro? Con gusto te ayudamos.",
+      firstNameDefault: "Juana",
+      lastNameDefault: "Pérez",
+      emailDefault: "ejemplo@correo.com",
+      phoneDefault: "(801) 555-1234",
+      cardNumberDefault: "0000 0000 0000 0000",
+      expirationDefault: "MM / AA",
+      securityDefault: "000",
+      cardNameDefault: "Juana Pérez",
+      countryDefault: "Estados Unidos",
+      addressDefault: "123 Main Street",
+      apartmentDefault: "(opcional)",
+      zipDefault: "00000",
+      summaryProgram: "Computación",
+      summaryDate: "7 mar, 2026",
+      summaryClasses: "1 Clase",
+      summaryTotal: "$90",
+    },
+  } as const;
+
+  const t = copy[language];
 
   const [registeringForSomeoneElse, setRegisteringForSomeoneElse] = useState(false);
-  const [country, setCountry] = useState("United States");
+  const [country, setCountry] = useState<string>(t.countryDefault);
+
+  const countryOptions: string[] = [t.countryDefault];
+  const countryValue = countryOptions.includes(country) ? country : countryOptions[0];
 
   return (
     <div className="registration-page">
@@ -48,8 +154,8 @@ export default function Registration() {
             margin: 0;
             color: white;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 40px;
+            line-height: 40px;
             font-weight: 600;
             white-space: nowrap;
           }
@@ -108,8 +214,8 @@ export default function Registration() {
           .panel-title {
             margin: 0 0 20px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -398,10 +504,14 @@ export default function Registration() {
               grid-template-columns: 1fr;
             }
 
-            .registration-banner-title,
+            .registration-banner-title {
+              font-size: 32px;
+              line-height: 36px;
+            }
+
             .panel-title {
-              font-size: 28px;
-              line-height: 1.1;
+              font-size: 26px;
+              line-height: 30px;
             }
 
             .register-btn {
@@ -415,7 +525,7 @@ export default function Registration() {
         <div className="registration-shell">
           <div className="registration-inner">
             <div className="registration-banner-row">
-              <h2 className="registration-banner-title">Registration</h2>
+              <h2 className="registration-banner-title">{t.bannerTitle}</h2>
 
               <button
                 className="registration-breadcrumb"
@@ -423,7 +533,7 @@ export default function Registration() {
                 type="button"
               >
                 <ChevronLeft size={18} />
-                <span>Computing</span>
+                <span>{t.breadcrumbProgram}</span>
               </button>
 
               <button
@@ -432,7 +542,7 @@ export default function Registration() {
                 type="button"
               >
                 <ChevronLeft size={18} />
-                <span>Programs</span>
+                <span>{t.breadcrumbPrograms}</span>
               </button>
 
               <div className="registration-banner-line" />
@@ -447,28 +557,28 @@ export default function Registration() {
             <div className="registration-grid">
               <div className="left-stack">
                 <div className="panel">
-                  <h2 className="panel-title">Your info</h2>
+                  <h2 className="panel-title">{t.yourInfo}</h2>
 
                   <div className="field-grid-2">
                     <div className="field">
-                      <label className="label">First name</label>
-                      <input className="input" defaultValue="Jane" />
+                      <label className="label">{t.firstName}</label>
+                      <input className="input" defaultValue={t.firstNameDefault} />
                     </div>
 
                     <div className="field">
-                      <label className="label">Last name</label>
-                      <input className="input" defaultValue="Smith" />
+                      <label className="label">{t.lastName}</label>
+                      <input className="input" defaultValue={t.lastNameDefault} />
                     </div>
                   </div>
 
                   <div className="field">
-                    <label className="label">Email address</label>
-                    <input className="input" defaultValue="example@email.com" />
+                    <label className="label">{t.emailAddress}</label>
+                    <input className="input" defaultValue={t.emailDefault} />
                   </div>
 
                   <div className="field">
-                    <label className="label">Phone number</label>
-                    <input className="input" defaultValue="(801) 555-1234" />
+                    <label className="label">{t.phoneNumber}</label>
+                    <input className="input" defaultValue={t.phoneDefault} />
                   </div>
 
                   <div className="panel-divider" />
@@ -478,51 +588,53 @@ export default function Registration() {
                       type="button"
                       className={`checkbox ${registeringForSomeoneElse ? "checked" : ""}`}
                       onClick={() => setRegisteringForSomeoneElse((prev) => !prev)}
-                      aria-label="I am registering someone else"
+                      aria-label={t.registeringForSomeoneElseAria}
                       aria-pressed={registeringForSomeoneElse}
                     />
-                    <div className="checkbox-label">I am registering someone else</div>
+                    <div className="checkbox-label">{t.registeringForSomeoneElse}</div>
                   </div>
                 </div>
 
                 <div className="panel">
-                  <h2 className="panel-title">Payment</h2>
+                  <h2 className="panel-title">{t.payment}</h2>
 
                   <div className="field">
-                    <label className="label">Card number</label>
-                    <input className="input" defaultValue="0000 0000 0000 0000" />
+                    <label className="label">{t.cardNumber}</label>
+                    <input className="input" defaultValue={t.cardNumberDefault} />
                   </div>
 
                   <div className="field-grid-2">
                     <div className="field">
-                      <label className="label">Expiration date</label>
-                      <input className="input" defaultValue="MM / YY" />
+                      <label className="label">{t.expirationDate}</label>
+                      <input className="input" defaultValue={t.expirationDefault} />
                     </div>
 
                     <div className="field">
-                      <label className="label">Security code</label>
-                      <input className="input" defaultValue="000" />
+                      <label className="label">{t.securityCode}</label>
+                      <input className="input" defaultValue={t.securityDefault} />
                     </div>
                   </div>
 
                   <div className="field">
-                    <label className="label">Name on card</label>
-                    <input className="input" defaultValue="Jane Smith" />
+                    <label className="label">{t.nameOnCard}</label>
+                    <input className="input" defaultValue={t.cardNameDefault} />
                   </div>
                 </div>
 
                 <div className="panel">
-                  <h2 className="panel-title">Billing address</h2>
+                  <h2 className="panel-title">{t.billingAddress}</h2>
 
                   <div className="field">
-                    <label className="label">Country/region</label>
+                    <label className="label">{t.countryRegion}</label>
                     <div className="select-wrap">
                       <select
                         className="select"
-                        value={country}
+                        value={countryValue}
                         onChange={(e) => setCountry(e.target.value)}
                       >
-                        <option>United States</option>
+                        {countryOptions.map((option) => (
+                          <option key={option}>{option}</option>
+                        ))}
                       </select>
                       <ChevronDown size={18} className="select-icon" />
                     </div>
@@ -530,63 +642,63 @@ export default function Registration() {
 
                   <div className="field-grid-2">
                     <div className="field">
-                      <label className="label">First name</label>
-                      <input className="input" defaultValue="Jane" />
+                      <label className="label">{t.firstName}</label>
+                      <input className="input" defaultValue={t.firstNameDefault} />
                     </div>
 
                     <div className="field">
-                      <label className="label">Last name</label>
-                      <input className="input" defaultValue="Smith" />
+                      <label className="label">{t.lastName}</label>
+                      <input className="input" defaultValue={t.lastNameDefault} />
                     </div>
                   </div>
 
                   <div className="field">
-                    <label className="label">Address</label>
-                    <input className="input" defaultValue="123 Main Street" />
+                    <label className="label">{t.address}</label>
+                    <input className="input" defaultValue={t.addressDefault} />
                   </div>
 
                   <div className="field">
-                    <label className="label">Apartment, suite, etc.</label>
-                    <input className="input" defaultValue="(optional)" />
+                    <label className="label">{t.apartment}</label>
+                    <input className="input" defaultValue={t.apartmentDefault} />
                   </div>
 
                   <div className="field">
-                    <label className="label">ZIP code</label>
-                    <input className="input" defaultValue="00000" />
+                    <label className="label">{t.zipCode}</label>
+                    <input className="input" defaultValue={t.zipDefault} />
                   </div>
                 </div>
               </div>
 
               <div className="right-stack">
                 <div className="panel">
-                  <h2 className="panel-title">Registration summary</h2>
+                  <h2 className="panel-title">{t.registrationSummary}</h2>
 
                   <div className="summary-image-wrap">
-                    <img className="summary-image" src={summaryImg} alt="Computing class" />
+                    <img className="summary-image" src={summaryImg} alt={t.summaryAlt} />
                   </div>
 
                   <div className="summary-rows">
                     <div className="summary-row">
-                      <span>Program</span>
-                      <span className="value">Computing</span>
+                      <span>{t.program}</span>
+                      <span className="value">{t.summaryProgram}</span>
                     </div>
 
                     <div className="summary-row">
-                      <span>Date</span>
-                      <span className="value">Mar 7, 2026</span>
+                      <span>{t.date}</span>
+                      <span className="value">{t.summaryDate}</span>
                     </div>
 
                     <div className="summary-row">
-                      <span>Classes</span>
-                      <span className="value">1 Class</span>
+                      <span>{t.classes}</span>
+                      <span className="value">{t.summaryClasses}</span>
                     </div>
                   </div>
 
                   <div className="summary-divider" />
 
                   <div className="summary-total">
-                    <span>Total</span>
-                    <span>$90</span>
+                    <span>{t.total}</span>
+                    <span>{t.summaryTotal}</span>
                   </div>
 
                   <button
@@ -594,24 +706,24 @@ export default function Registration() {
                     type="button"
                     onClick={() => navigate("/thank-you")}
                   >
-                    Register
+                    {t.register}
                   </button>
 
                   <div className="pay-row">
                     <button className="btn pay-btn" type="button">
-                      <img className="pay-icon" src={appleIcon} alt="Apple Pay" />
-                      <span>Apple Pay</span>
+                      <img className="pay-icon" src={appleIcon} alt={t.applePay} />
+                      <span>{t.applePay}</span>
                     </button>
 
                     <button className="btn pay-btn" type="button">
-                      <img className="pay-icon" src={googleIcon} alt="Google Pay" />
-                      <span>Google Pay</span>
+                      <img className="pay-icon" src={googleIcon} alt={t.googlePay} />
+                      <span>{t.googlePay}</span>
                     </button>
                   </div>
                 </div>
 
                 <div className="help-card">
-                  <p>Need any help with registration? We’re happy to assist.</p>
+                  <p>{t.helpText}</p>
                   <div className="help-phone">+1 (385) 217-1291</div>
                 </div>
               </div>

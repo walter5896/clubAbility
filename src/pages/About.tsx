@@ -1,12 +1,69 @@
 import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 import kidsImg from "../assets/clubability/about/kids.svg";
 import founderImg from "../assets/clubability/about/founder.svg";
 
 export default function About() {
   const [amount, setAmount] = useState("$");
   const [frequency, setFrequency] = useState<"one-time" | "monthly">("monthly");
+  const { language } = useLanguage();
 
   const presetAmounts = ["$100", "$200", "$300"];
+
+  const copy = {
+    en: {
+      bannerTitle: "About Us",
+      missionTitle: "Our Mission",
+      missionText:
+        'Under the "Tech for All" mission, Club Ability has become a transformative force, preparing participants for the STEM careers of tomorrow. Initiatives like the "Triunfa en Tecnología" conference and the "El Poder de la Tecnología" podcast reflect our commitment to access, opportunity, and innovation for every learner.',
+      storyTitle: "Want to be a part of our story?",
+      storyCopy:
+        "With your support, Club Ability can continue providing scholarships, tech equipment, and essential educational resources. Your contribution helps open doors for more youth to explore careers in technology, close digital divides, and build a brighter future for themselves and their communities.",
+      donationTitle: "Make a Donation",
+      donationCopy1:
+        "At Club Ability, your donation goes directly toward making high-quality STEM education accessible to every student.",
+      donationCopy2:
+        "Your gift helps cover instructors, materials, and program resources!",
+      oneTime: "ONE TIME",
+      monthly: "MONTHLY",
+      donate: "Donate",
+      founderTitle: "Our Founder",
+      founderCopy1:
+        "Juliette Bautista, a visionary leader and passionate advocate for STEM education, founded Club Ability to address the lack of accessible tech programs for underserved families and individuals with special needs in Utah.",
+      founderCopy2:
+        "This innovative platform enables families to collaboratively explore technology ranging from video games and animation to 3D modeling and audiovisual design.",
+      kidsAlt: "Club Ability kids",
+      founderAlt: "Club Ability founder",
+      donationAria: "Donation amount",
+    },
+    es: {
+      bannerTitle: "Sobre Nosotros",
+      missionTitle: "Nuestra Misión",
+      missionText:
+        'Bajo la misión "Tecnología para Todos", Club Ability se ha convertido en una fuerza transformadora que prepara a los participantes para las carreras STEM del mañana. Iniciativas como la conferencia "Triunfa en Tecnología" y el pódcast "El Poder de la Tecnología" reflejan nuestro compromiso con el acceso, la oportunidad y la innovación para cada estudiante.',
+      storyTitle: "¿Quieres ser parte de nuestra historia?",
+      storyCopy:
+        "Con tu apoyo, Club Ability puede seguir brindando becas, equipo tecnológico y recursos educativos esenciales. Tu contribución ayuda a abrir puertas para que más jóvenes exploren carreras en tecnología, reduzcan la brecha digital y construyan un futuro más brillante para ellos y sus comunidades.",
+      donationTitle: "Haz una Donación",
+      donationCopy1:
+        "En Club Ability, tu donación se destina directamente a hacer que la educación STEM de alta calidad sea accesible para cada estudiante.",
+      donationCopy2:
+        "¡Tu aporte ayuda a cubrir instructores, materiales y recursos del programa!",
+      oneTime: "UNA VEZ",
+      monthly: "MENSUAL",
+      donate: "Donar",
+      founderTitle: "Nuestra Fundadora",
+      founderCopy1:
+        "Juliette Bautista, líder visionaria y apasionada defensora de la educación STEM, fundó Club Ability para abordar la falta de programas tecnológicos accesibles para familias desatendidas e individuos con necesidades especiales en Utah.",
+      founderCopy2:
+        "Esta innovadora plataforma permite a las familias explorar la tecnología de manera colaborativa, desde videojuegos y animación hasta modelado 3D y diseño audiovisual.",
+      kidsAlt: "Niños de Club Ability",
+      founderAlt: "Fundadora de Club Ability",
+      donationAria: "Cantidad de donación",
+    },
+  } as const;
+
+  const t = copy[language];
 
   return (
     <div className="about-page">
@@ -30,22 +87,22 @@ export default function About() {
 
           .page-banner {
             background: #0c3a4a;
-            padding: 34px 0 36px;
+            padding: 22px 0 24px;
           }
 
           .page-banner-row {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
           }
 
           .page-banner h1 {
             margin: 0;
             color: white;
             font-family: Poppins, sans-serif;
-            font-size: 57px;
-            line-height: 57px;
-            font-weight: 700;
+            font-size: 40px;
+            line-height: 40px;
+            font-weight: 600;
             white-space: nowrap;
           }
 
@@ -54,7 +111,7 @@ export default function About() {
             background: #e8206a;
             flex: 1;
             border-radius: 999px;
-            margin-top: 10px;
+            margin-top: 4px;
           }
 
           .mission-section {
@@ -70,8 +127,8 @@ export default function About() {
           .section-heading {
             margin: 0 0 10px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -126,8 +183,8 @@ export default function About() {
           .founder-title-main {
             margin: 0 0 14px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -327,8 +384,8 @@ export default function About() {
             }
 
             .page-banner h1 {
-              font-size: 42px;
-              line-height: 1.05;
+              font-size: 32px;
+              line-height: 36px;
               white-space: normal;
             }
 
@@ -336,8 +393,8 @@ export default function About() {
             .story-title,
             .donation-title,
             .founder-title-main {
-              font-size: 28px;
-              line-height: 1.1;
+              font-size: 26px;
+              line-height: 30px;
             }
 
             .mission-text {
@@ -372,9 +429,11 @@ export default function About() {
 
       <section className="page-banner">
         <div className="about-shell">
-          <div className="page-banner-row">
-            <h1>About Us</h1>
-            <div className="page-banner-line" />
+          <div className="about-inner">
+            <div className="page-banner-row">
+              <h1>{t.bannerTitle}</h1>
+              <div className="page-banner-line" />
+            </div>
           </div>
         </div>
       </section>
@@ -382,12 +441,8 @@ export default function About() {
       <section className="mission-section">
         <div className="about-shell">
           <div className="mission-block">
-            <h2 className="section-heading">Our Mission</h2>
-            <p className="mission-text">
-              Under the "Tech for All" mission, Club Ability has become a transformative force,
-              preparing participants for the STEM careers of tomorrow. Initiatives like the
-              "Triunfa en Tecnología" conference, the "El Poder de la Tecnología" podcast.
-            </p>
+            <h2 className="section-heading">{t.missionTitle}</h2>
+            <p className="mission-text">{t.missionText}</p>
           </div>
         </div>
       </section>
@@ -396,28 +451,18 @@ export default function About() {
         <div className="about-shell">
           <div className="about-inner story-donate-stage">
             <div className="story-card">
-              <h2 className="story-title">Want to be a part of our story?</h2>
-              <p className="story-copy">
-                With your support, Club Ability can continue providing scholarships, tech equipment,
-                and essential educational resources. Your contribution helps open doors for more youth
-                to explore careers in technology, close digital divides, and build a brighter future
-                for themselves and their communities.
-              </p>
+              <h2 className="story-title">{t.storyTitle}</h2>
+              <p className="story-copy">{t.storyCopy}</p>
 
               <div className="kids-image-wrap">
-                <img className="kids-image" src={kidsImg} alt="Club Ability kids" />
+                <img className="kids-image" src={kidsImg} alt={t.kidsAlt} />
               </div>
             </div>
 
             <div className="donation-card">
-              <h2 className="donation-title">Make a Donation</h2>
-              <p className="donation-copy">
-                At Club Ability, your donation goes directly toward making high-quality STEM education
-                accessible to every student.
-              </p>
-              <p className="donation-copy">
-                Your gift helps cover instructors, materials, and program resources!
-              </p>
+              <h2 className="donation-title">{t.donationTitle}</h2>
+              <p className="donation-copy">{t.donationCopy1}</p>
+              <p className="donation-copy">{t.donationCopy2}</p>
 
               <div className="donation-box">
                 <div className="donation-presets">
@@ -437,7 +482,7 @@ export default function About() {
                   className="amount-input"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  aria-label="Donation amount"
+                  aria-label={t.donationAria}
                 />
 
                 <div className="frequency-row">
@@ -446,19 +491,19 @@ export default function About() {
                     className={`frequency-btn ${frequency === "one-time" ? "active" : ""}`}
                     onClick={() => setFrequency("one-time")}
                   >
-                    ONE TIME
+                    {t.oneTime}
                   </button>
                   <button
                     type="button"
                     className={`frequency-btn ${frequency === "monthly" ? "active" : ""}`}
                     onClick={() => setFrequency("monthly")}
                   >
-                    MONTHLY
+                    {t.monthly}
                   </button>
                 </div>
 
                 <button type="button" className="donate-btn">
-                  Donate
+                  {t.donate}
                 </button>
               </div>
             </div>
@@ -469,24 +514,17 @@ export default function About() {
       <section className="founder-section">
         <div className="about-shell">
           <div className="founder-layout">
-            <h2 className="founder-title-main">Our Founder</h2>
+            <h2 className="founder-title-main">{t.founderTitle}</h2>
 
             <div className="founder-grid">
               <div className="founder-image-wrap">
-                <img className="founder-image" src={founderImg} alt="Club Ability founder" />
+                <img className="founder-image" src={founderImg} alt={t.founderAlt} />
               </div>
 
               <div>
-                <p className="founder-copy">
-                  Juliette Bautista, a visionary leader and passionate advocate for STEM education,
-                  founded Club Ability to address the lack of accessible tech programs for underserved
-                  families and individuals with special needs in Utah.
-                </p>
+                <p className="founder-copy">{t.founderCopy1}</p>
 
-                <p className="founder-copy">
-                  This innovative platform enables families to collaboratively explore technology
-                  ranging from video games and animation to 3D modeling and audiovisual design.
-                </p>
+                <p className="founder-copy">{t.founderCopy2}</p>
               </div>
             </div>
           </div>

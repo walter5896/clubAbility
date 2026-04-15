@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import RootLayout from "./components/layout/RootLayout";
+import { LanguageProvider } from "./context/LanguageContext";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -20,23 +21,25 @@ import "./App.css";
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<RootLayout />}>
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="awards" element={<Awards />} />
-        <Route path="contact" element={<ContactUs />} />
-        <Route path="get-involved" element={<GetInvolved />} />
-        <Route path="get-started" element={<GetStarted />} />
-        <Route path="donate" element={<Donate />} />
-        <Route path="program-detail" element={<ProgramDetail />} />
-        <Route path="programs" element={<Programs />} />
-        <Route path="registration" element={<Registration />} />
-        <Route path="sponsors" element={<Sponsors />} />
-        <Route path="stories" element={<Stories />} />
-        <Route path="thank-you" element={<ThankYou />} />
-        <Route path="volunteer" element={<Volunteer />} />
-      </Route>
-    </Routes>
+    <LanguageProvider>
+      <Routes>
+        <Route path="/" element={<RootLayout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="awards" element={<Awards />} />
+          <Route path="contact" element={<ContactUs />} />
+          <Route path="get-involved" element={<GetInvolved />} />
+          <Route path="get-started" element={<GetStarted />} />
+          <Route path="donate" element={<Donate />} />
+          <Route path="program-detail" element={<ProgramDetail />} />
+          <Route path="programs" element={<Programs />} />
+          <Route path="registration" element={<Registration />} />
+          <Route path="sponsors" element={<Sponsors />} />
+          <Route path="stories" element={<Stories />} />
+          <Route path="thank-you" element={<ThankYou />} />
+          <Route path="volunteer" element={<Volunteer />} />
+        </Route>
+      </Routes>
+    </LanguageProvider>
   );
 }

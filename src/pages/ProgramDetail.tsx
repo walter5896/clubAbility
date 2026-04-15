@@ -1,5 +1,6 @@
 import { ChevronLeft, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 import largeImg from "../assets/clubability/program-detail/largerimg.svg";
 import rect10Img from "../assets/clubability/program-detail/Rectangle 10.svg";
@@ -16,11 +17,85 @@ type ScheduleItem = {
 
 export default function ProgramDetail() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+
+  const copy = {
+    en: {
+      bannerTitle: "Computing",
+      breadcrumb: "Programs",
+      pageTitle: "Computing",
+      category: "Computers",
+      age: "Age 12+",
+      mainAlt: "Computing program",
+      thumb1Alt: "Computing class thumbnail 1",
+      thumb2Alt: "Computing class thumbnail 2",
+      thumb3Alt: "Computing class thumbnail 3",
+      aboutTitle: "About This Program",
+      aboutCopy1:
+        "Learn the essential fundamentals of computing from scratch in a practical, dynamic, and easy-to-understand way. Develop digital skills that will help you in school, work, and your daily life.",
+      aboutCopy2:
+        "Students will build confidence using technology through guided instruction, hands-on activities, and real practice with core computer concepts. This program is designed to support beginners while helping learners strengthen problem-solving, digital literacy, and everyday computer skills in a welcoming environment.",
+      locationTitle: "Location",
+      location1: "ClubAbility Studio",
+      location2: "845 S Main St, Suite B8",
+      location3: "Bountiful",
+      pricingTitle: "Pricing",
+      standard: "Standard",
+      standardPrice: "$90 / class",
+      scholarship: "Scholarship",
+      scholarshipValue: "Available",
+      spotsRemaining: "12 spots remaining",
+      registerNow: "Register Now",
+      contactUs: "Contact Us",
+      scheduleTitle: "Class Schedule",
+      open: "OPEN",
+      full: "FULL",
+      months: {
+        mar: "Mar",
+      },
+    },
+    es: {
+      bannerTitle: "Computación",
+      breadcrumb: "Programas",
+      pageTitle: "Computación",
+      category: "Computadoras",
+      age: "Edad 12+",
+      mainAlt: "Programa de computación",
+      thumb1Alt: "Miniatura de clase de computación 1",
+      thumb2Alt: "Miniatura de clase de computación 2",
+      thumb3Alt: "Miniatura de clase de computación 3",
+      aboutTitle: "Sobre Este Programa",
+      aboutCopy1:
+        "Aprende los fundamentos esenciales de la computación desde cero de una manera práctica, dinámica y fácil de entender. Desarrolla habilidades digitales que te ayudarán en la escuela, el trabajo y la vida diaria.",
+      aboutCopy2:
+        "Los estudiantes desarrollarán confianza en el uso de la tecnología mediante instrucción guiada, actividades prácticas y experiencia real con conceptos básicos de computación. Este programa está diseñado para apoyar a principiantes mientras ayuda a fortalecer la resolución de problemas, la alfabetización digital y las habilidades informáticas cotidianas en un ambiente acogedor.",
+      locationTitle: "Ubicación",
+      location1: "ClubAbility Studio",
+      location2: "845 S Main St, Suite B8",
+      location3: "Bountiful",
+      pricingTitle: "Precios",
+      standard: "Estándar",
+      standardPrice: "$90 / clase",
+      scholarship: "Beca",
+      scholarshipValue: "Disponible",
+      spotsRemaining: "12 cupos disponibles",
+      registerNow: "Regístrate Ahora",
+      contactUs: "Contáctanos",
+      scheduleTitle: "Horario de Clase",
+      open: "ABIERTO",
+      full: "LLENO",
+      months: {
+        mar: "Mar",
+      },
+    },
+  } as const;
+
+  const t = copy[language];
 
   const schedule: ScheduleItem[] = [
-    { month: "Mar", day: "14", start: "10:30 am", end: "12:00 pm", status: "OPEN" },
-    { month: "Mar", day: "15", start: "10:30 am", end: "12:00 pm", status: "FULL" },
-    { month: "Mar", day: "16", start: "10:30 am", end: "12:00 pm", status: "OPEN" },
+    { month: t.months.mar, day: "14", start: "10:30 am", end: "12:00 pm", status: "OPEN" },
+    { month: t.months.mar, day: "15", start: "10:30 am", end: "12:00 pm", status: "FULL" },
+    { month: t.months.mar, day: "16", start: "10:30 am", end: "12:00 pm", status: "OPEN" },
   ];
 
   return (
@@ -59,8 +134,8 @@ export default function ProgramDetail() {
             margin: 0;
             color: white;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 40px;
+            line-height: 40px;
             font-weight: 600;
             white-space: nowrap;
           }
@@ -104,9 +179,9 @@ export default function ProgramDetail() {
           .pd-title {
             margin: 0 0 18px 0;
             font-family: Poppins, sans-serif;
-            font-size: 57px;
-            line-height: 57px;
-            font-weight: 700;
+            font-size: 40px;
+            line-height: 40px;
+            font-weight: 600;
             color: #062430;
             text-align: left;
           }
@@ -181,8 +256,8 @@ export default function ProgramDetail() {
           .pd-section-title {
             margin: 0 0 16px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -214,8 +289,8 @@ export default function ProgramDetail() {
           .pd-pricing-title {
             margin: 0 0 34px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -288,8 +363,8 @@ export default function ProgramDetail() {
           .pd-schedule-title {
             margin: 0 0 16px 2px;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -378,8 +453,8 @@ export default function ProgramDetail() {
           .pd-location-title {
             margin: 0 0 18px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -425,17 +500,23 @@ export default function ProgramDetail() {
               flex-wrap: wrap;
             }
 
+            .pd-banner-title {
+              font-size: 32px;
+              line-height: 36px;
+              white-space: normal;
+            }
+
             .pd-title {
-              font-size: 42px;
-              line-height: 1.05;
+              font-size: 32px;
+              line-height: 36px;
             }
 
             .pd-section-title,
             .pd-pricing-title,
             .pd-schedule-title,
             .pd-location-title {
-              font-size: 28px;
-              line-height: 1.1;
+              font-size: 26px;
+              line-height: 30px;
             }
 
             .pd-thumb-grid {
@@ -474,7 +555,7 @@ export default function ProgramDetail() {
         <div className="pd-shell">
           <div className="pd-inner">
             <div className="pd-banner-row">
-              <h2 className="pd-banner-title">Computing</h2>
+              <h2 className="pd-banner-title">{t.bannerTitle}</h2>
 
               <button
                 className="pd-breadcrumb"
@@ -482,7 +563,7 @@ export default function ProgramDetail() {
                 type="button"
               >
                 <ChevronLeft size={18} />
-                <span>Programs</span>
+                <span>{t.breadcrumb}</span>
               </button>
 
               <div className="pd-banner-line" />
@@ -496,55 +577,46 @@ export default function ProgramDetail() {
           <div className="pd-inner">
             <div className="pd-grid">
               <div>
-                <h1 className="pd-title">Computing</h1>
+                <h1 className="pd-title">{t.pageTitle}</h1>
 
                 <div className="pd-tags">
-                  <span className="pd-tag category">Computers</span>
-                  <span className="pd-tag age">Age 12+</span>
+                  <span className="pd-tag category">{t.category}</span>
+                  <span className="pd-tag age">{t.age}</span>
                 </div>
 
                 <div className="pd-gallery">
                   <div className="pd-main-image-wrap">
-                    <img className="pd-main-image" src={largeImg} alt="Computing program" />
+                    <img className="pd-main-image" src={largeImg} alt={t.mainAlt} />
                   </div>
 
                   <div className="pd-thumb-grid">
                     <div className="pd-thumb-wrap">
-                      <img className="pd-thumb" src={rect10Img} alt="Computing class thumbnail 1" />
+                      <img className="pd-thumb" src={rect10Img} alt={t.thumb1Alt} />
                     </div>
                     <div className="pd-thumb-wrap">
-                      <img className="pd-thumb" src={rect11Img} alt="Computing class thumbnail 2" />
+                      <img className="pd-thumb" src={rect11Img} alt={t.thumb2Alt} />
                     </div>
                     <div className="pd-thumb-wrap">
-                      <img className="pd-thumb" src={rect12Img} alt="Computing class thumbnail 3" />
+                      <img className="pd-thumb" src={rect12Img} alt={t.thumb3Alt} />
                     </div>
                   </div>
                 </div>
 
-                <h2 className="pd-section-title">About This Program</h2>
+                <h2 className="pd-section-title">{t.aboutTitle}</h2>
 
-                <p className="pd-about-copy">
-                  Learn the essential fundamentals of computing from scratch in a practical,
-                  dynamic, and easy-to-understand way. Develop digital skills that will help you in
-                  school, work, and your daily life.
-                </p>
+                <p className="pd-about-copy">{t.aboutCopy1}</p>
 
-                <p className="pd-about-copy">
-                  Students will build confidence using technology through guided instruction,
-                  hands-on activities, and real practice with core computer concepts. This program
-                  is designed to support beginners while helping learners strengthen problem-solving,
-                  digital literacy, and everyday computer skills in a welcoming environment.
-                </p>
+                <p className="pd-about-copy">{t.aboutCopy2}</p>
 
                 <div style={{ marginTop: "44px" }}>
-                  <h2 className="pd-location-title">Location</h2>
+                  <h2 className="pd-location-title">{t.locationTitle}</h2>
 
                   <div className="pd-location-row">
                     <MapPin size={22} className="pd-location-icon" />
                     <div className="pd-location-copy">
-                      <div>ClubAbility Studio</div>
-                      <div>845 S Main St, Suite B8</div>
-                      <div>Bountiful</div>
+                      <div>{t.location1}</div>
+                      <div>{t.location2}</div>
+                      <div>{t.location3}</div>
                     </div>
                   </div>
                 </div>
@@ -552,28 +624,28 @@ export default function ProgramDetail() {
 
               <div>
                 <div className="pd-pricing-card">
-                  <h2 className="pd-pricing-title">Pricing</h2>
+                  <h2 className="pd-pricing-title">{t.pricingTitle}</h2>
 
                   <div className="pd-pricing-row">
-                    <span>Standard</span>
-                    <span>$90 / class</span>
+                    <span>{t.standard}</span>
+                    <span>{t.standardPrice}</span>
                   </div>
                   <div className="pd-pricing-divider" />
 
                   <div className="pd-pricing-row">
-                    <span>Scholarship</span>
-                    <span>Available</span>
+                    <span>{t.scholarship}</span>
+                    <span>{t.scholarshipValue}</span>
                   </div>
                   <div className="pd-pricing-divider" />
 
-                  <div className="pd-spots">12 spots remaining</div>
+                  <div className="pd-spots">{t.spotsRemaining}</div>
 
                   <button
                     className="pd-action-btn primary"
                     type="button"
                     onClick={() => navigate("/registration")}
                   >
-                    Register Now
+                    {t.registerNow}
                   </button>
 
                   <button
@@ -581,11 +653,11 @@ export default function ProgramDetail() {
                     type="button"
                     onClick={() => navigate("/get-started")}
                   >
-                    Contact Us
+                    {t.contactUs}
                   </button>
                 </div>
 
-                <h2 className="pd-schedule-title">Class Schedule</h2>
+                <h2 className="pd-schedule-title">{t.scheduleTitle}</h2>
 
                 <div className="pd-schedule-list">
                   {schedule.map((item) => (
@@ -605,7 +677,7 @@ export default function ProgramDetail() {
                       <div
                         className={`pd-status ${item.status === "OPEN" ? "open" : "full"}`}
                       >
-                        {item.status}
+                        {item.status === "OPEN" ? t.open : t.full}
                       </div>
                     </div>
                   ))}
