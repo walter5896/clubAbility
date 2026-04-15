@@ -110,7 +110,7 @@ export default function Home() {
       title: "Become a Sponsor",
       text: "Partner with Club Ability to support STEM education programs.",
       cta: "Sponsor",
-      bg: "#78a5b6",
+      bg: "#0c495d",
       icon: <UserRound size={30} color="white" strokeWidth={2.2} />,
       onClick: () => navigate("/sponsors"),
     },
@@ -180,13 +180,14 @@ export default function Home() {
           }
 
           .hero-copy {
-  max-width: 560px;
-  text-align: left;
-  background: #062430;
-  border-radius: 12px;
-  padding: 20px 20px 18px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-}
+            max-width: 560px;
+            text-align: left;
+            background: #062430;
+            border-radius: 12px;
+            padding: 20px 20px 18px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+          }
+
           .hero-copy h1 {
             margin: 0 0 28px 0;
             font-family: Poppins, sans-serif;
@@ -309,7 +310,7 @@ export default function Home() {
 
           .why-card {
             position: relative;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.10);
             isolation: isolate;
           }
 
@@ -327,38 +328,54 @@ export default function Home() {
             position: relative;
             z-index: 2;
             height: 100%;
-            padding: 20px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             box-sizing: border-box;
           }
 
+          .why-card-body::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            background: #f8f8f8;
+            border-radius: 12px;
+            border: 1px solid rgba(6, 36, 48, 0.06);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+            z-index: 0;
+          }
+
+          .why-card-body > * {
+            position: relative;
+            z-index: 1;
+          }
+
           .why-top {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 42px;
+            gap: 14px;
+            margin-bottom: 28px;
           }
 
           .why-icon-box {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: rgba(255,255,255,0.92);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #f1f3f4;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             flex-shrink: 0;
           }
 
           .why-heading {
             margin: 0;
-            font-family: Roboto, sans-serif;
-            font-size: 24px;
+            font-family: Poppins, sans-serif;
+            font-size: 22px;
             line-height: 1.15;
-            font-weight: 400;
+            font-weight: 600;
             color: #062430;
             text-align: left;
           }
@@ -366,20 +383,20 @@ export default function Home() {
           .why-text {
             margin: 0;
             font-family: Roboto, sans-serif;
-            font-size: 16px;
-            line-height: 1.28;
+            font-size: 15px;
+            line-height: 1.45;
             font-weight: 400;
-            color: #27414b;
+            color: #183845;
             text-align: left;
-            max-width: 240px;
+            max-width: 250px;
           }
 
           .why-stat {
-            margin: 0;
+            margin: 20px 0 0 0;
             font-family: Roboto, sans-serif;
-            font-size: 16px;
+            font-size: 15px;
             line-height: 1.2;
-            font-weight: 400;
+            font-weight: 600;
             color: #062430;
             text-align: left;
           }
@@ -406,7 +423,7 @@ export default function Home() {
           .program-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(6, 36, 48, 0.58);
+            background: rgba(6, 36, 48, 0.82);
             border-radius: 8px;
           }
 
@@ -502,8 +519,8 @@ export default function Home() {
 
           .story-stars {
             margin: 0 0 10px 0;
-            font-size: 16px;
-            color: #f2b300;
+            font-size: 20px;
+            color: #8a5a00;
             letter-spacing: 1px;
             text-align: left;
           }
@@ -659,7 +676,7 @@ export default function Home() {
             <div className="equal-grid">
               {whyCards.map((card) => (
                 <div key={card.title} className="why-card">
-                  <img className="why-card-bg" src={card.bg} alt={card.title} />
+                  <img className="why-card-bg" src={card.bg} alt="" />
                   <div className="why-card-body">
                     <div>
                       <div className="why-top">
@@ -688,7 +705,7 @@ export default function Home() {
                   className="program-card"
                   onClick={() => navigate("/program-detail")}
                 >
-                  <img className="program-img" src={program.img} alt={program.title} />
+                  <img className="program-img" src={program.img} alt="" />
                   <div className="program-overlay" />
                   <div className="program-body">
                     <h3 className="program-title">{program.title}</h3>
