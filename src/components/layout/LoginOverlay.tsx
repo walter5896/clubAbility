@@ -1,4 +1,5 @@
 import { X } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
 type LoginOverlayProps = {
   isOpen: boolean;
@@ -9,6 +10,35 @@ export default function LoginOverlay({
   isOpen,
   onClose,
 }: LoginOverlayProps) {
+  const { language } = useLanguage();
+
+  const copy = {
+    en: {
+      closeLabel: "Close login overlay",
+      title: "Login",
+      username: "Username",
+      usernamePlaceholder: "example@email.com",
+      password: "Password",
+      passwordPlaceholder: "****************",
+      forgotPassword: "Forgot your password?",
+      signUp: "Sign up?",
+      submit: "Login",
+    },
+    es: {
+      closeLabel: "Cerrar ventana de inicio de sesión",
+      title: "Iniciar Sesión",
+      username: "Usuario",
+      usernamePlaceholder: "ejemplo@correo.com",
+      password: "Contraseña",
+      passwordPlaceholder: "****************",
+      forgotPassword: "¿Olvidaste tu contraseña?",
+      signUp: "¿Registrarte?",
+      submit: "Entrar",
+    },
+  } as const;
+
+  const t = copy[language];
+
   if (!isOpen) return null;
 
   return (
@@ -210,7 +240,7 @@ export default function LoginOverlay({
           className="login-overlay-close"
           type="button"
           onClick={onClose}
-          aria-label="Close login overlay"
+          aria-label={t.closeLabel}
         >
           <X size={28} strokeWidth={2.4} />
         </button>
@@ -232,29 +262,29 @@ export default function LoginOverlay({
           </svg>
         </div>
 
-        <h2 className="login-overlay-title">Login</h2>
+        <h2 className="login-overlay-title">{t.title}</h2>
 
         <div className="login-overlay-field">
           <label className="login-overlay-label" htmlFor="overlay-username">
-            Username
+            {t.username}
           </label>
           <input
             id="overlay-username"
             className="login-overlay-input"
             type="email"
-            placeholder="example@email.com"
+            placeholder={t.usernamePlaceholder}
           />
         </div>
 
         <div className="login-overlay-field">
           <label className="login-overlay-label" htmlFor="overlay-password">
-            Password
+            {t.password}
           </label>
           <input
             id="overlay-password"
             className="login-overlay-input"
             type="password"
-            placeholder="****************"
+            placeholder={t.passwordPlaceholder}
           />
         </div>
 
@@ -263,16 +293,16 @@ export default function LoginOverlay({
         <div className="login-overlay-footer">
           <div className="login-overlay-links">
             <button className="login-overlay-link" type="button">
-              Forgot your password?
+              {t.forgotPassword}
             </button>
 
             <button className="login-overlay-link" type="button">
-              Sign up?
+              {t.signUp}
             </button>
           </div>
 
           <button className="login-overlay-submit" type="button">
-            Login
+            {t.submit}
           </button>
         </div>
       </div>
