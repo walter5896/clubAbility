@@ -195,7 +195,7 @@ export default function Header({ onLoginClick }: HeaderProps) {
             color: #ffffff;
             text-decoration: none;
             font-family: Roboto, sans-serif;
-            font-size: 24px;
+            font-size: 14px;
             line-height: 1;
             font-weight: 400;
             transition: opacity 0.18s ease;

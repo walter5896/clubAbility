@@ -1,8 +1,83 @@
 import { useNavigate } from "react-router-dom";
 import { CalendarDays, UserRound, Star, Check } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function ThankYou() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+
+  const copy = {
+    en: {
+      heroTitle: "You’re registered!",
+      heroText:
+        "Thank you for signing up for Computing. A confirmation email has been sent to example@email.com with everything you need to know before your class.",
+      detailsTitle: "Registration details",
+      labels: {
+        program: "Program",
+        student: "Student",
+        time: "Time",
+        location: "Location",
+        confirmation: "Confirmation #",
+      },
+      values: {
+        program: "Computing",
+        student: "Jane Smith",
+        time: "Saturday, Mar 14, 2026 – 10:30 am - 12:00 pm",
+        location: "845 S Main St, Suite B8, Bountiful",
+        confirmation: "00-0000000-000",
+      },
+      nextTitle: "What’s next",
+      cards: {
+        calendarTitle: "Add to your calendar",
+        calendarText: "Save your session dates so you don’t miss a class.",
+        calendarLink: "Download .ics file",
+        questionsTitle: "Questions before your first class?",
+        questionsText:
+          "We are happy to answer anything from concerns, accessibility, what to bring, and more.",
+        questionsLink: "Contact us",
+        exploreTitle: "Explore more programs",
+        exploreText: "See what else is happening at Club Ability this spring.",
+        exploreLink: "View all classes",
+      },
+      homeButton: "Go Back To Home",
+    },
+    es: {
+      heroTitle: "¡Ya estás registrado!",
+      heroText:
+        "Gracias por inscribirte en Computación. Se ha enviado un correo de confirmación a ejemplo@correo.com con todo lo que necesitas saber antes de tu clase.",
+      detailsTitle: "Detalles del registro",
+      labels: {
+        program: "Programa",
+        student: "Estudiante",
+        time: "Horario",
+        location: "Ubicación",
+        confirmation: "Confirmación #",
+      },
+      values: {
+        program: "Computación",
+        student: "Juana Pérez",
+        time: "Sábado, 14 mar, 2026 – 10:30 am - 12:00 pm",
+        location: "845 S Main St, Suite B8, Bountiful",
+        confirmation: "00-0000000-000",
+      },
+      nextTitle: "Qué sigue",
+      cards: {
+        calendarTitle: "Agrégalo a tu calendario",
+        calendarText: "Guarda las fechas de tu sesión para no perderte ninguna clase.",
+        calendarLink: "Descargar archivo .ics",
+        questionsTitle: "¿Preguntas antes de tu primera clase?",
+        questionsText:
+          "Con gusto respondemos cualquier duda sobre accesibilidad, qué llevar, inquietudes y más.",
+        questionsLink: "Contáctanos",
+        exploreTitle: "Explora más programas",
+        exploreText: "Mira qué más está pasando en Club Ability esta primavera.",
+        exploreLink: "Ver todas las clases",
+      },
+      homeButton: "Volver al Inicio",
+    },
+  } as const;
+
+  const t = copy[language];
 
   return (
     <div className="thank-you-page">
@@ -53,8 +128,8 @@ export default function ThankYou() {
           .ty-title {
             margin: 0 0 14px 0;
             font-family: Poppins, sans-serif;
-            font-size: 57px;
-            line-height: 57px;
+            font-size: 40px;
+            line-height: 40px;
             font-weight: 700;
             color: white;
             text-align: center;
@@ -86,8 +161,8 @@ export default function ThankYou() {
           .ty-details-title {
             margin: 0 0 18px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -127,8 +202,8 @@ export default function ThankYou() {
           .ty-next-title {
             margin: 0 0 22px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -183,8 +258,8 @@ export default function ThankYou() {
           .ty-card-title {
             margin: 0 0 18px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -266,8 +341,8 @@ export default function ThankYou() {
             }
 
             .ty-title {
-              font-size: 42px;
-              line-height: 1.05;
+              font-size: 32px;
+              line-height: 36px;
             }
 
             .ty-subcopy {
@@ -277,8 +352,8 @@ export default function ThankYou() {
             .ty-details-title,
             .ty-next-title,
             .ty-card-title {
-              font-size: 28px;
-              line-height: 1.1;
+              font-size: 26px;
+              line-height: 30px;
             }
 
             .ty-detail-row {
@@ -306,13 +381,9 @@ export default function ThankYou() {
                 <Check size={42} color="#cb356e" strokeWidth={3} />
               </div>
 
-              <h1 className="ty-title">You’re registered!</h1>
+              <h1 className="ty-title">{t.heroTitle}</h1>
 
-              <p className="ty-subcopy">
-                Thank you for signing up for Computing. A confirmation email has
-                been sent to example@email.com with everything you need to know
-                before your class.
-              </p>
+              <p className="ty-subcopy">{t.heroText}</p>
             </div>
           </div>
         </div>
@@ -322,39 +393,35 @@ export default function ThankYou() {
         <div className="ty-shell">
           <div className="ty-inner">
             <div className="ty-details-card">
-              <h2 className="ty-details-title">Registration details</h2>
+              <h2 className="ty-details-title">{t.detailsTitle}</h2>
 
               <div className="ty-detail-row">
-                <div className="ty-detail-label">Program</div>
-                <div className="ty-detail-value">Computing</div>
+                <div className="ty-detail-label">{t.labels.program}</div>
+                <div className="ty-detail-value">{t.values.program}</div>
               </div>
 
               <div className="ty-detail-row">
-                <div className="ty-detail-label">Student</div>
-                <div className="ty-detail-value">Jane Smith</div>
+                <div className="ty-detail-label">{t.labels.student}</div>
+                <div className="ty-detail-value">{t.values.student}</div>
               </div>
 
               <div className="ty-detail-row">
-                <div className="ty-detail-label">Time</div>
-                <div className="ty-detail-value">
-                  Saturday, Mar 14, 2026 – 10:30 am - 12:00 pm
-                </div>
+                <div className="ty-detail-label">{t.labels.time}</div>
+                <div className="ty-detail-value">{t.values.time}</div>
               </div>
 
               <div className="ty-detail-row">
-                <div className="ty-detail-label">Location</div>
-                <div className="ty-detail-value">
-                  845 S Main St, Suite B8, Bountiful
-                </div>
+                <div className="ty-detail-label">{t.labels.location}</div>
+                <div className="ty-detail-value">{t.values.location}</div>
               </div>
 
               <div className="ty-detail-row">
-                <div className="ty-detail-label">Confirmation #</div>
-                <div className="ty-detail-value">00-0000000-000</div>
+                <div className="ty-detail-label">{t.labels.confirmation}</div>
+                <div className="ty-detail-value">{t.values.confirmation}</div>
               </div>
             </div>
 
-            <h3 className="ty-next-title">What’s next</h3>
+            <h3 className="ty-next-title">{t.nextTitle}</h3>
 
             <div className="ty-next-grid">
               <div className="ty-next-card">
@@ -362,14 +429,12 @@ export default function ThankYou() {
                   <CalendarDays size={18} />
                 </div>
 
-                <h4 className="ty-card-title">Add to your calendar</h4>
+                <h4 className="ty-card-title">{t.cards.calendarTitle}</h4>
 
-                <p className="ty-card-copy">
-                  Save your session dates so you don’t miss a class.
-                </p>
+                <p className="ty-card-copy">{t.cards.calendarText}</p>
 
                 <button className="ty-card-link" type="button">
-                  Download .ics file <span>→</span>
+                  {t.cards.calendarLink} <span>→</span>
                 </button>
               </div>
 
@@ -378,21 +443,16 @@ export default function ThankYou() {
                   <UserRound size={18} />
                 </div>
 
-                <h4 className="ty-card-title">
-                  Questions before your first class?
-                </h4>
+                <h4 className="ty-card-title">{t.cards.questionsTitle}</h4>
 
-                <p className="ty-card-copy">
-                  We are happy to answer anything from concerns, accessibility,
-                  what to bring, and more.
-                </p>
+                <p className="ty-card-copy">{t.cards.questionsText}</p>
 
                 <button
                   className="ty-card-link pink-link"
                   type="button"
                   onClick={() => navigate("/get-started")}
                 >
-                  Contact us <span>→</span>
+                  {t.cards.questionsLink} <span>→</span>
                 </button>
               </div>
 
@@ -401,18 +461,16 @@ export default function ThankYou() {
                   <Star size={18} />
                 </div>
 
-                <h4 className="ty-card-title">Explore more programs</h4>
+                <h4 className="ty-card-title">{t.cards.exploreTitle}</h4>
 
-                <p className="ty-card-copy">
-                  See what else is happening at Club Ability this spring.
-                </p>
+                <p className="ty-card-copy">{t.cards.exploreText}</p>
 
                 <button
                   className="ty-card-link"
                   type="button"
                   onClick={() => navigate("/programs")}
                 >
-                  View all classes <span>→</span>
+                  {t.cards.exploreLink} <span>→</span>
                 </button>
               </div>
             </div>
@@ -423,7 +481,7 @@ export default function ThankYou() {
                 type="button"
                 onClick={() => navigate("/")}
               >
-                Go Back To Home
+                {t.homeButton}
               </button>
             </div>
           </div>

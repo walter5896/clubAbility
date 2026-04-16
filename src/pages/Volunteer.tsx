@@ -1,6 +1,7 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import { ChevronDown, ChevronLeft, Phone, MapPin, Mail } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 import robot1 from "../assets/clubability/volunteer/robot1.svg";
 import robot2 from "../assets/clubability/volunteer/robot2.svg";
@@ -8,18 +9,114 @@ import robot3 from "../assets/clubability/volunteer/robot3.svg";
 
 export default function Volunteer() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+
+  const copy = {
+    en: {
+      bannerTitle: "Volunteer",
+      breadcrumb: "Get Involved",
+      intro:
+        "Make a difference by sharing your skills,\nmentoring students, and supporting STEM education.",
+      sectionTitle: "Why Volunteer With Club Ability",
+      formTitle: "Volunteer Interest Form",
+      yourInfo: "Your info",
+      areaOfInterest: "Area Of Interest",
+      availability: "Availability",
+      additionalNotes: "Additional Notes (Optional)",
+      submit: "Submit",
+      needHelp: "Need Help?",
+      helpText:
+        "Have questions about programs or enrollment?\nContact our team and we'll be happy to assist you.",
+      firstName: "First name",
+      lastName: "Last name",
+      emailAddress: "Email address",
+      phoneNumber: "Phone number",
+      other: "Other:",
+      typeHere: "Type Here",
+      availabilityPlaceholder: "Type Here Or Manually Select Times",
+      selectAvailability: "Select Availability",
+      notesPlaceholder: "Type Here to Form Message",
+      firstNameDefault: "Jane",
+      lastNameDefault: "Smith",
+      emailDefault: "example@email.com",
+      phoneDefault: "801 555-1234",
+      interests: ["Mentoring", "Teaching", "Technical Support", "Event"],
+      availabilityOptions: ["Weekdays", "Evenings", "Weekends", "Flexible"],
+      benefits: [
+        {
+          title: "Mentor Students",
+          text: "Help guide students through hands-on technology projects.",
+        },
+        {
+          title: "Share Your Skills",
+          text: "Teach coding, design, or professional knowledge.",
+        },
+        {
+          title: "Make an Impact",
+          text: "Support students and strengthen your community.",
+        },
+      ],
+    },
+    es: {
+      bannerTitle: "Voluntariado",
+      breadcrumb: "Participa",
+      intro:
+        "Marca la diferencia compartiendo tus habilidades,\nmentoreando a estudiantes y apoyando la educación STEM.",
+      sectionTitle: "Por Qué Ser Voluntario en Club Ability",
+      formTitle: "Formulario de Interés de Voluntariado",
+      yourInfo: "Tu información",
+      areaOfInterest: "Área de Interés",
+      availability: "Disponibilidad",
+      additionalNotes: "Notas Adicionales (Opcional)",
+      submit: "Enviar",
+      needHelp: "¿Necesitas Ayuda?",
+      helpText:
+        "¿Tienes preguntas sobre programas o inscripción?\nContacta a nuestro equipo y con gusto te ayudaremos.",
+      firstName: "Nombre",
+      lastName: "Apellido",
+      emailAddress: "Correo electrónico",
+      phoneNumber: "Número de teléfono",
+      other: "Otro:",
+      typeHere: "Escribe Aquí",
+      availabilityPlaceholder: "Escribe Aquí O Selecciona Horarios Manualmente",
+      selectAvailability: "Seleccionar Disponibilidad",
+      notesPlaceholder: "Escribe Aquí tu Mensaje",
+      firstNameDefault: "Juana",
+      lastNameDefault: "Pérez",
+      emailDefault: "ejemplo@correo.com",
+      phoneDefault: "801 555-1234",
+      interests: ["Mentoría", "Enseñanza", "Soporte Técnico", "Eventos"],
+      availabilityOptions: ["Entre semana", "Tardes", "Fines de semana", "Flexible"],
+      benefits: [
+        {
+          title: "Mentorea a Estudiantes",
+          text: "Ayuda a guiar a estudiantes en proyectos tecnológicos prácticos.",
+        },
+        {
+          title: "Comparte Tus Habilidades",
+          text: "Enseña programación, diseño o conocimiento profesional.",
+        },
+        {
+          title: "Genera Impacto",
+          text: "Apoya a estudiantes y fortalece tu comunidad.",
+        },
+      ],
+    },
+  } as const;
+
+  const t = copy[language];
 
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [selectedAvailability, setSelectedAvailability] = useState<string[]>([]);
   const [showAvailabilityOptions, setShowAvailabilityOptions] = useState(false);
 
-  const [firstName, setFirstName] = useState("Jane");
-  const [lastName, setLastName] = useState("Smith");
-  const [email, setEmail] = useState("example@email.com");
-  const [phone, setPhone] = useState("801 555-1234");
-  const [otherInterest, setOtherInterest] = useState("");
-  const [availabilityText, setAvailabilityText] = useState("");
-  const [notes, setNotes] = useState("");
+  const [firstName, setFirstName] = useState<string>(t.firstNameDefault);
+  const [lastName, setLastName] = useState<string>(t.lastNameDefault);
+  const [email, setEmail] = useState<string>(t.emailDefault);
+  const [phone, setPhone] = useState<string>(t.phoneDefault);
+  const [otherInterest, setOtherInterest] = useState<string>("");
+  const [availabilityText, setAvailabilityText] = useState<string>("");
+  const [notes, setNotes] = useState<string>("");
 
   const toggleItem = (
     item: string,
@@ -33,8 +130,8 @@ export default function Volunteer() {
     }
   };
 
-  const interests = ["Mentoring", "Teaching", "Technical Support", "Event"];
-  const availabilityOptions = ["Weekdays", "Evenings", "Weekends", "Flexible"];
+  const interests: string[] = [...t.interests];
+  const availabilityOptions: string[] = [...t.availabilityOptions];
 
   return (
     <div className="volunteer-page">
@@ -73,8 +170,8 @@ export default function Volunteer() {
             margin: 0;
             color: white;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 40px;
+            line-height: 40px;
             font-weight: 600;
             white-space: nowrap;
           }
@@ -117,13 +214,14 @@ export default function Volunteer() {
             font-weight: 600;
             color: #062430;
             text-align: left;
+            white-space: pre-line;
           }
 
           .vol-section-title {
             margin: 0 0 64px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: center;
@@ -201,8 +299,8 @@ export default function Volunteer() {
           .vol-form-title {
             margin: 0 0 24px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: center;
@@ -224,8 +322,8 @@ export default function Volunteer() {
           .vol-panel-title {
             margin: 0 0 18px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: left;
@@ -413,8 +511,8 @@ export default function Volunteer() {
           .vol-help-title {
             margin: 0 0 20px 0;
             font-family: Poppins, sans-serif;
-            font-size: 35px;
-            line-height: 35px;
+            font-size: 30px;
+            line-height: 30px;
             font-weight: 600;
             color: #062430;
             text-align: center;
@@ -436,6 +534,7 @@ export default function Volunteer() {
             font-weight: 400;
             color: #1b2e38;
             text-align: left;
+            white-space: pre-line;
           }
 
           .vol-help-list {
@@ -472,8 +571,8 @@ export default function Volunteer() {
             }
 
             .vol-banner-title {
-              font-size: 28px;
-              line-height: 1.1;
+              font-size: 32px;
+              line-height: 36px;
             }
 
             .vol-content {
@@ -490,8 +589,8 @@ export default function Volunteer() {
             .vol-form-title,
             .vol-panel-title,
             .vol-help-title {
-              font-size: 28px;
-              line-height: 1.1;
+              font-size: 26px;
+              line-height: 30px;
             }
 
             .vol-benefits-wrap {
@@ -540,7 +639,7 @@ export default function Volunteer() {
         <div className="vol-shell">
           <div className="vol-inner">
             <div className="vol-banner-row">
-              <h2 className="vol-banner-title">Volunteer</h2>
+              <h2 className="vol-banner-title">{t.bannerTitle}</h2>
 
               <button
                 className="vol-breadcrumb"
@@ -548,7 +647,7 @@ export default function Volunteer() {
                 type="button"
               >
                 <ChevronLeft size={18} />
-                <span>Get Involved</span>
+                <span>{t.breadcrumb}</span>
               </button>
 
               <div className="vol-banner-line" />
@@ -560,57 +659,47 @@ export default function Volunteer() {
       <section className="vol-content">
         <div className="vol-shell">
           <div className="vol-inner">
-            <div className="vol-intro">
-              Make a difference by sharing your skills,
-              <br />
-              mentoring students, and supporting STEM education.
-            </div>
+            <div className="vol-intro">{t.intro}</div>
 
-            <h2 className="vol-section-title">Why Volunteer With Club Ability</h2>
+            <h2 className="vol-section-title">{t.sectionTitle}</h2>
 
             <div className="vol-benefits-wrap">
               <div className="vol-benefits-grid">
                 <div className="vol-benefit-card dark">
                   <div className="vol-benefit-top">
                     <img className="vol-benefit-icon" src={robot1} alt="" />
-                    <h3 className="vol-benefit-title">Mentor Students</h3>
+                    <h3 className="vol-benefit-title">{t.benefits[0].title}</h3>
                   </div>
-                  <p className="vol-benefit-copy">
-                    Help guide students through hands-on technology projects.
-                  </p>
+                  <p className="vol-benefit-copy">{t.benefits[0].text}</p>
                 </div>
 
                 <div className="vol-benefit-card dark">
                   <div className="vol-benefit-top">
                     <img className="vol-benefit-icon" src={robot2} alt="" />
-                    <h3 className="vol-benefit-title">Share Your Skills</h3>
+                    <h3 className="vol-benefit-title">{t.benefits[1].title}</h3>
                   </div>
-                  <p className="vol-benefit-copy">
-                    Teach coding, design, or professional knowledge.
-                  </p>
+                  <p className="vol-benefit-copy">{t.benefits[1].text}</p>
                 </div>
 
                 <div className="vol-benefit-card teal">
                   <div className="vol-benefit-top">
                     <img className="vol-benefit-icon" src={robot3} alt="" />
-                    <h3 className="vol-benefit-title">Make an Impact</h3>
+                    <h3 className="vol-benefit-title">{t.benefits[2].title}</h3>
                   </div>
-                  <p className="vol-benefit-copy">
-                    Support students and strengthen your community.
-                  </p>
+                  <p className="vol-benefit-copy">{t.benefits[2].text}</p>
                 </div>
               </div>
             </div>
 
-            <h2 className="vol-form-title">Volunteer Interest Form</h2>
+            <h2 className="vol-form-title">{t.formTitle}</h2>
 
             <div className="vol-stack">
               <div className="vol-panel">
-                <h3 className="vol-panel-title">Your info</h3>
+                <h3 className="vol-panel-title">{t.yourInfo}</h3>
 
                 <div className="vol-grid-2">
                   <div className="vol-field">
-                    <label className="vol-label">First name</label>
+                    <label className="vol-label">{t.firstName}</label>
                     <input
                       className="vol-input"
                       value={firstName}
@@ -619,7 +708,7 @@ export default function Volunteer() {
                   </div>
 
                   <div className="vol-field">
-                    <label className="vol-label">Last name</label>
+                    <label className="vol-label">{t.lastName}</label>
                     <input
                       className="vol-input"
                       value={lastName}
@@ -629,7 +718,7 @@ export default function Volunteer() {
                 </div>
 
                 <div className="vol-field">
-                  <label className="vol-label">Email address</label>
+                  <label className="vol-label">{t.emailAddress}</label>
                   <input
                     className="vol-input"
                     value={email}
@@ -638,7 +727,7 @@ export default function Volunteer() {
                 </div>
 
                 <div className="vol-field">
-                  <label className="vol-label">Phone number</label>
+                  <label className="vol-label">{t.phoneNumber}</label>
                   <input
                     className="vol-input"
                     value={phone}
@@ -648,7 +737,7 @@ export default function Volunteer() {
               </div>
 
               <div className="vol-panel">
-                <h3 className="vol-panel-title">Area Of Interest</h3>
+                <h3 className="vol-panel-title">{t.areaOfInterest}</h3>
 
                 <div className="vol-check-grid">
                   {interests.map((interest) => (
@@ -667,11 +756,11 @@ export default function Volunteer() {
                   <div className="vol-inline-other">
                     <label className="vol-checkbox">
                       <input type="checkbox" />
-                      <span>Other:</span>
+                      <span>{t.other}</span>
                     </label>
                     <input
                       className="vol-input"
-                      placeholder="Type Here"
+                      placeholder={t.typeHere}
                       value={otherInterest}
                       onChange={(e) => setOtherInterest(e.target.value)}
                     />
@@ -680,12 +769,12 @@ export default function Volunteer() {
               </div>
 
               <div className="vol-panel">
-                <h3 className="vol-panel-title">Availability</h3>
+                <h3 className="vol-panel-title">{t.availability}</h3>
 
                 <div className="vol-select-area">
                   <input
                     className="vol-input vol-free-input"
-                    placeholder="Type Here Or Manually Select Times"
+                    placeholder={t.availabilityPlaceholder}
                     value={availabilityText}
                     onChange={(e) => setAvailabilityText(e.target.value)}
                   />
@@ -696,7 +785,7 @@ export default function Volunteer() {
                       className="vol-select-trigger"
                       onClick={() => setShowAvailabilityOptions((prev) => !prev)}
                     >
-                      Select Availability
+                      {t.selectAvailability}
                     </button>
                     <ChevronDown size={14} className="vol-select-icon" />
                   </div>
@@ -725,10 +814,10 @@ export default function Volunteer() {
               </div>
 
               <div className="vol-panel">
-                <h3 className="vol-panel-title">Additional Notes (Optional)</h3>
+                <h3 className="vol-panel-title">{t.additionalNotes}</h3>
                 <textarea
                   className="vol-textarea"
-                  placeholder="Type Here to Form Message"
+                  placeholder={t.notesPlaceholder}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                 />
@@ -740,20 +829,16 @@ export default function Volunteer() {
                   type="button"
                   onClick={() => navigate("/thank-you")}
                 >
-                  Submit
+                  {t.submit}
                 </button>
               </div>
             </div>
 
             <div className="vol-help">
-              <h3 className="vol-help-title">Need Help?</h3>
+              <h3 className="vol-help-title">{t.needHelp}</h3>
 
               <div className="vol-help-body">
-                <p className="vol-help-copy">
-                  Have questions about programs or enrollment?
-                  <br />
-                  Contact our team and we'll be happy to assist you.
-                </p>
+                <p className="vol-help-copy">{t.helpText}</p>
 
                 <div className="vol-help-list">
                   <div className="vol-help-item">
