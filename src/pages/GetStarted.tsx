@@ -107,6 +107,17 @@ export default function GetStarted() {
   const [showCourseOptions, setShowCourseOptions] = useState(false);
   const [showCityOptions, setShowCityOptions] = useState(false);
 
+  const [firstName, setFirstName] = useState<string>(t.firstNameDefault);
+  const [lastName, setLastName] = useState<string>(t.lastNameDefault);
+  const [email, setEmail] = useState<string>(t.emailDefault);
+  const [phone, setPhone] = useState<string>(t.phoneDefault);
+  const [timeOther, setTimeOther] = useState<string>("");
+  const [courseFreeText, setCourseFreeText] = useState<string>("");
+  const [languageOther, setLanguageOther] = useState<string>("");
+  const [modalityOther, setModalityOther] = useState<string>("");
+  const [cityFreeText, setCityFreeText] = useState<string>("");
+  const [notes, setNotes] = useState<string>("");
+
   const toggleItem = (
     item: string,
     selected: string[],
@@ -554,30 +565,78 @@ export default function GetStarted() {
           <div className="gs-inner">
             <h2 className="gs-form-title">{t.formTitle}</h2>
 
-            <div className="gs-stack">
+            <form
+              className="gs-stack"
+              onSubmit={(e) => {
+                e.preventDefault();
+                navigate("/interest-submitted");
+              }}
+            >
               <div className="gs-panel">
                 <h3 className="gs-panel-title">{t.yourInfo}</h3>
 
                 <div className="gs-grid-2">
                   <div className="gs-field">
-                    <label className="gs-label">{t.firstName}</label>
-                    <input className="gs-input" defaultValue={t.firstNameDefault} />
+                    <label className="gs-label" htmlFor="gs-first-name">
+                      {t.firstName}
+                    </label>
+                    <input
+                      id="gs-first-name"
+                      name="firstName"
+                      className="gs-input"
+                      type="text"
+                      autoComplete="given-name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
                   </div>
 
                   <div className="gs-field">
-                    <label className="gs-label">{t.lastName}</label>
-                    <input className="gs-input" defaultValue={t.lastNameDefault} />
+                    <label className="gs-label" htmlFor="gs-last-name">
+                      {t.lastName}
+                    </label>
+                    <input
+                      id="gs-last-name"
+                      name="lastName"
+                      className="gs-input"
+                      type="text"
+                      autoComplete="family-name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
                   </div>
                 </div>
 
                 <div className="gs-field">
-                  <label className="gs-label">{t.emailAddress}</label>
-                  <input className="gs-input" defaultValue={t.emailDefault} />
+                  <label className="gs-label" htmlFor="gs-email">
+                    {t.emailAddress}
+                  </label>
+                  <input
+                    id="gs-email"
+                    name="email"
+                    className="gs-input"
+                    type="email"
+                    autoComplete="email"
+                    inputMode="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
 
                 <div className="gs-field">
-                  <label className="gs-label">{t.phoneNumber}</label>
-                  <input className="gs-input" defaultValue={t.phoneDefault} />
+                  <label className="gs-label" htmlFor="gs-phone">
+                    {t.phoneNumber}
+                  </label>
+                  <input
+                    id="gs-phone"
+                    name="phone"
+                    className="gs-input"
+                    type="tel"
+                    autoComplete="tel"
+                    inputMode="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
                 </div>
               </div>
 
@@ -597,11 +656,20 @@ export default function GetStarted() {
                   ))}
 
                   <div className="gs-inline-other">
-                    <label className="gs-checkbox">
+                    <label className="gs-checkbox" htmlFor="gs-time-other">
                       <input type="checkbox" />
                       <span>{t.other}</span>
                     </label>
-                    <input className="gs-input" placeholder={t.typeHere} />
+                    <input
+                      id="gs-time-other"
+                      name="timePreferenceOther"
+                      className="gs-input"
+                      type="text"
+                      autoComplete="off"
+                      placeholder={t.typeHere}
+                      value={timeOther}
+                      onChange={(e) => setTimeOther(e.target.value)}
+                    />
                   </div>
 
                   <div className="gs-check-row">
@@ -624,8 +692,14 @@ export default function GetStarted() {
 
                 <div className="gs-select-area">
                   <input
+                    id="gs-course-free-text"
+                    name="coursesInterestedFreeText"
                     className="gs-input gs-free-input"
+                    type="text"
+                    autoComplete="off"
                     placeholder={t.coursesPlaceholder}
+                    value={courseFreeText}
+                    onChange={(e) => setCourseFreeText(e.target.value)}
                   />
 
                   <div className="gs-select-wrap">
@@ -676,11 +750,20 @@ export default function GetStarted() {
                   ))}
 
                   <div className="gs-inline-other">
-                    <label className="gs-checkbox">
+                    <label className="gs-checkbox" htmlFor="gs-language-other">
                       <input type="checkbox" />
                       <span>{t.other}</span>
                     </label>
-                    <input className="gs-input" placeholder={t.typeHere} />
+                    <input
+                      id="gs-language-other"
+                      name="preferredLanguageOther"
+                      className="gs-input"
+                      type="text"
+                      autoComplete="language"
+                      placeholder={t.typeHere}
+                      value={languageOther}
+                      onChange={(e) => setLanguageOther(e.target.value)}
+                    />
                   </div>
                 </div>
               </div>
@@ -703,21 +786,38 @@ export default function GetStarted() {
                   ))}
 
                   <div className="gs-inline-other">
-                    <label className="gs-checkbox">
+                    <label className="gs-checkbox" htmlFor="gs-modality-other">
                       <input type="checkbox" />
                       <span>{t.other}</span>
                     </label>
-                    <input className="gs-input" placeholder={t.typeHere} />
+                    <input
+                      id="gs-modality-other"
+                      name="modalityOther"
+                      className="gs-input"
+                      type="text"
+                      autoComplete="off"
+                      placeholder={t.typeHere}
+                      value={modalityOther}
+                      onChange={(e) => setModalityOther(e.target.value)}
+                    />
                   </div>
                 </div>
 
                 <div className="gs-field">
-                  <label className="gs-label">{t.cityIfInPerson}</label>
+                  <label className="gs-label" htmlFor="gs-city-free-text">
+                    {t.cityIfInPerson}
+                  </label>
 
                   <div className="gs-select-area" style={{ marginBottom: "10px" }}>
                     <input
+                      id="gs-city-free-text"
+                      name="cityPreference"
                       className="gs-input gs-free-input"
+                      type="text"
+                      autoComplete="address-level2"
                       placeholder={t.cityPlaceholder}
+                      value={cityFreeText}
+                      onChange={(e) => setCityFreeText(e.target.value)}
                     />
 
                     <div className="gs-select-wrap">
@@ -754,21 +854,22 @@ export default function GetStarted() {
               <div className="gs-panel">
                 <h3 className="gs-panel-title">{t.additionalNotes}</h3>
                 <textarea
+                  id="gs-notes"
+                  name="additionalNotes"
                   className="gs-textarea"
+                  autoComplete="off"
                   placeholder={t.notesPlaceholder}
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
                 />
               </div>
 
               <div className="gs-submit-wrap">
-                <button
-                  className="gs-submit-btn"
-                  type="button"
-                  onClick={() => navigate("/thank-you")}
-                >
+                <button className="gs-submit-btn" type="submit">
                   {t.submit}
                 </button>
               </div>
-            </div>
+            </form>
 
             <div className="gs-help">
               <h3 className="gs-help-title">{t.needHelp}</h3>

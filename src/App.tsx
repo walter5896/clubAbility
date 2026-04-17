@@ -9,6 +9,7 @@ import ContactUs from "./pages/ContactUs";
 import GetInvolved from "./pages/GetInvolved";
 import GetStarted from "./pages/GetStarted";
 import Donate from "./pages/Donate";
+import InterestSubmitted from "./pages/InterestSubmitted";
 import ProgramDetail from "./pages/ProgramDetail";
 import Programs from "./pages/Programs";
 import Registration from "./pages/Registration";
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="get-involved" element={<GetInvolved />} />
           <Route path="get-started" element={<GetStarted />} />
           <Route path="donate" element={<Donate />} />
+          <Route path="interest-submitted" element={<InterestSubmitted />} />
           <Route path="program-detail" element={<ProgramDetail />} />
           <Route path="programs" element={<Programs />} />
           <Route path="registration" element={<Registration />} />
