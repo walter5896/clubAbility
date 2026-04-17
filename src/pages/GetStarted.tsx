@@ -35,10 +35,10 @@ export default function GetStarted() {
       cityPlaceholder: "Type Here Or Manually Select A City",
       selectCity: "Select City",
       notesPlaceholder: "Type Here to Form Message",
-      firstNameDefault: "Jane",
-      lastNameDefault: "Smith",
-      emailDefault: "example@email.com",
-      phoneDefault: "(801) 555-1234",
+      firstNamePlaceholder: "Jane",
+      lastNamePlaceholder: "Smith",
+      emailPlaceholder: "example@email.com",
+      phonePlaceholder: "(801) 555-1234",
       courses: ["AI Innovation", "Marketing", "Canva Basics", "3D Design"],
       cities: ["Bountiful", "Salt Lake City", "West Valley", "Ogden", "Kearns"],
       timeOptions: [
@@ -78,10 +78,10 @@ export default function GetStarted() {
       cityPlaceholder: "Escribe Aquí O Selecciona Una Ciudad Manualmente",
       selectCity: "Seleccionar Ciudad",
       notesPlaceholder: "Escribe Aquí tu Mensaje",
-      firstNameDefault: "Juana",
-      lastNameDefault: "Pérez",
-      emailDefault: "ejemplo@correo.com",
-      phoneDefault: "(801) 555-1234",
+      firstNamePlaceholder: "Juana",
+      lastNamePlaceholder: "Pérez",
+      emailPlaceholder: "ejemplo@correo.com",
+      phonePlaceholder: "(801) 555-1234",
       courses: ["Innovación en IA", "Marketing", "Conceptos Básicos de Canva", "Diseño 3D"],
       cities: ["Bountiful", "Salt Lake City", "West Valley", "Ogden", "Kearns"],
       timeOptions: [
@@ -107,10 +107,10 @@ export default function GetStarted() {
   const [showCourseOptions, setShowCourseOptions] = useState(false);
   const [showCityOptions, setShowCityOptions] = useState(false);
 
-  const [firstName, setFirstName] = useState<string>(t.firstNameDefault);
-  const [lastName, setLastName] = useState<string>(t.lastNameDefault);
-  const [email, setEmail] = useState<string>(t.emailDefault);
-  const [phone, setPhone] = useState<string>(t.phoneDefault);
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
   const [timeOther, setTimeOther] = useState<string>("");
   const [courseFreeText, setCourseFreeText] = useState<string>("");
   const [languageOther, setLanguageOther] = useState<string>("");
@@ -276,7 +276,7 @@ export default function GetStarted() {
             box-sizing: border-box;
             outline: none;
             font-family: Roboto, sans-serif;
-            color: #6b7f89;
+            color: #062430;
           }
 
           .gs-input {
@@ -285,6 +285,12 @@ export default function GetStarted() {
             font-size: 16px;
             line-height: 1;
             font-weight: 400;
+          }
+
+          .gs-input::placeholder,
+          .gs-textarea::placeholder {
+            color: #6b7f89;
+            opacity: 1;
           }
 
           .gs-input:focus,
@@ -567,6 +573,7 @@ export default function GetStarted() {
 
             <form
               className="gs-stack"
+              autoComplete="on"
               onSubmit={(e) => {
                 e.preventDefault();
                 navigate("/interest-submitted");
@@ -582,11 +589,13 @@ export default function GetStarted() {
                     </label>
                     <input
                       id="gs-first-name"
-                      name="firstName"
+                      name="given-name"
                       className="gs-input"
                       type="text"
                       autoComplete="given-name"
+                      placeholder={t.firstNamePlaceholder}
                       value={firstName}
+                      onFocus={(e) => e.currentTarget.select()}
                       onChange={(e) => setFirstName(e.target.value)}
                     />
                   </div>
@@ -597,11 +606,13 @@ export default function GetStarted() {
                     </label>
                     <input
                       id="gs-last-name"
-                      name="lastName"
+                      name="family-name"
                       className="gs-input"
                       type="text"
                       autoComplete="family-name"
+                      placeholder={t.lastNamePlaceholder}
                       value={lastName}
+                      onFocus={(e) => e.currentTarget.select()}
                       onChange={(e) => setLastName(e.target.value)}
                     />
                   </div>
@@ -618,7 +629,9 @@ export default function GetStarted() {
                     type="email"
                     autoComplete="email"
                     inputMode="email"
+                    placeholder={t.emailPlaceholder}
                     value={email}
+                    onFocus={(e) => e.currentTarget.select()}
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
@@ -629,12 +642,14 @@ export default function GetStarted() {
                   </label>
                   <input
                     id="gs-phone"
-                    name="phone"
+                    name="tel"
                     className="gs-input"
                     type="tel"
                     autoComplete="tel"
                     inputMode="tel"
+                    placeholder={t.phonePlaceholder}
                     value={phone}
+                    onFocus={(e) => e.currentTarget.select()}
                     onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
@@ -668,6 +683,7 @@ export default function GetStarted() {
                       autoComplete="off"
                       placeholder={t.typeHere}
                       value={timeOther}
+                      onFocus={(e) => e.currentTarget.select()}
                       onChange={(e) => setTimeOther(e.target.value)}
                     />
                   </div>
@@ -699,6 +715,7 @@ export default function GetStarted() {
                     autoComplete="off"
                     placeholder={t.coursesPlaceholder}
                     value={courseFreeText}
+                    onFocus={(e) => e.currentTarget.select()}
                     onChange={(e) => setCourseFreeText(e.target.value)}
                   />
 
@@ -759,9 +776,10 @@ export default function GetStarted() {
                       name="preferredLanguageOther"
                       className="gs-input"
                       type="text"
-                      autoComplete="language"
+                      autoComplete="off"
                       placeholder={t.typeHere}
                       value={languageOther}
+                      onFocus={(e) => e.currentTarget.select()}
                       onChange={(e) => setLanguageOther(e.target.value)}
                     />
                   </div>
@@ -798,6 +816,7 @@ export default function GetStarted() {
                       autoComplete="off"
                       placeholder={t.typeHere}
                       value={modalityOther}
+                      onFocus={(e) => e.currentTarget.select()}
                       onChange={(e) => setModalityOther(e.target.value)}
                     />
                   </div>
@@ -811,12 +830,13 @@ export default function GetStarted() {
                   <div className="gs-select-area" style={{ marginBottom: "10px" }}>
                     <input
                       id="gs-city-free-text"
-                      name="cityPreference"
+                      name="address-level2"
                       className="gs-input gs-free-input"
                       type="text"
                       autoComplete="address-level2"
                       placeholder={t.cityPlaceholder}
                       value={cityFreeText}
+                      onFocus={(e) => e.currentTarget.select()}
                       onChange={(e) => setCityFreeText(e.target.value)}
                     />
 
@@ -860,6 +880,7 @@ export default function GetStarted() {
                   autoComplete="off"
                   placeholder={t.notesPlaceholder}
                   value={notes}
+                  onFocus={(e) => e.currentTarget.select()}
                   onChange={(e) => setNotes(e.target.value)}
                 />
               </div>
